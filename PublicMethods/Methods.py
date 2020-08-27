@@ -52,6 +52,19 @@ class selenium:
         self.driver.find_element_by_css_selector(location).send_keys(content)
         self.driver.implicitly_wait(10)
 
+    def FEBXP_CCSK(self,location,content):
+        """
+        定位-点击-清空-输入-隐性等待10S
+        find_element_by_css_xpath 缩写FEBXP
+        :param location: 定位
+        :param content: 输入内容
+        :return:
+        """
+        self.driver.find_element_by_css_xpath(location).click()
+        self.driver.find_element_by_css_xpath(location).clear()
+        self.driver.find_element_by_css_xpath(location).send_keys(content)
+        self.driver.implicitly_wait(10)
+
     def FEBCS_CCSKK(self,location,content):
         """
         定位-点击-清空-输入-隐性等待10S-回车
@@ -66,6 +79,44 @@ class selenium:
         self.driver.find_element_by_css_selector(location).send_keys(Keys.ENTER)
         self.driver.implicitly_wait(10)
 
+    def FEBXP_CCSKK(self,location,content):
+        """
+        定位-点击-清空-输入-隐性等待10S-回车
+        find_element_by_css_xpath 缩写FEBCXP
+        :param location: 定位
+        :param content: 输入内容
+        :return:
+        """
+        self.driver.find_element_by_css_xpath(location).click()
+        self.driver.find_element_by_css_xpathr(location).clear()
+        self.driver.find_element_by_css_xpath(location).send_keys(content)
+        self.driver.find_element_by_css_xpath(location).send_keys(Keys.ENTER)
+        self.driver.implicitly_wait(10)
+
+    def FEBCS_CCK(self,location):
+        """
+        定位-点击-清空-回车-隐性等待10S
+        find_element_by_css_selector 缩写FEBCS
+        :param location: 定位
+        :return:
+        """
+        self.driver.find_element_by_css_selector(location).click()
+        self.driver.find_element_by_css_selector(location).clear()
+        self.driver.find_element_by_css_selector(location).send_keys(Keys.ENTER)
+        self.driver.implicitly_wait(10)
+
+    def FEBXP_CCK(self,location):
+        """
+        定位-点击-清空-回车-隐性等待10S
+        find_element_by_css_xpath 缩写FEBP
+        :param location: 定位
+        :return:
+        """
+        self.driver.find_element_by_css_xpath(location).click()
+        self.driver.find_element_by_css_xpath(location).clear()
+        self.driver.find_element_by_css_xpath(location).send_keys(Keys.ENTER)
+        self.driver.implicitly_wait(10)
+
     def FEBCS_C(self,location):
         """
         定位-点击-隐性等待10S
@@ -74,6 +125,16 @@ class selenium:
         :return:
         """
         self.driver.find_element_by_css_selector(location).click()
+        self.driver.implicitly_wait(10)
+
+    def FEBXP_C(self,location):
+        """
+        定位-点击-隐性等待10S
+        find_element_by_css_xpath 缩写FEBXP
+        :param location: 定位
+        :return:
+        """
+        self.driver.find_element_by_xpath(location).click()
         self.driver.implicitly_wait(10)
 
     def positioning_module_get(self,name):
