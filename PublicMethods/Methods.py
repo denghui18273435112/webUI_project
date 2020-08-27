@@ -102,7 +102,7 @@ class selenium:
         """
         self.driver.find_element_by_css_selector(location).click()
         self.driver.find_element_by_css_selector(location).clear()
-        self.driver.find_element_by_css_selector(location).send_keys(Keys.ENTER)
+        self.driver.find_element_by_css_selector().send_keys(Keys.ENTER)
         self.driver.implicitly_wait(10)
 
     def FEBXP_CCK(self,location):
