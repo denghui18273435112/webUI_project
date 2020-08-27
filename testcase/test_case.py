@@ -27,13 +27,12 @@ class Test_fix_module(object):  #传object
             selenium(driver).FEBCS_CCSK(location=".item input[placeholder=请输入用户名]",content=test_login["text"])
             selenium(driver).FEBCS_CCSK(location=".item input[placeholder=请输入密码]",content=test_login["password"])
             selenium(driver).FEBCS_C(location=".verifyCode.item input[placeholder=请输入验证码]")
+
             selenium(driver).FEBCS_CCSK(location="#verifyCode",content="xicheng")
-
             #在不是万能验证的时候使用
-            # yanzhenma =input("请输入验证码：")
-            # selenium(driver).FEBCS_CCSK(location="verifyCode",content=yanzhenma)
-            selenium(driver).FEBCS_C(location="#app > div > div > button")
+            #selenium(driver).FEBCS_CCSK(location="verifyCode",content=selenium(driver).new_inptu())
 
+            selenium(driver).FEBCS_C(location="#app > div > div > button")
             #判断是否登录成功
             if driver.current_url != test_login["validation_url"]:
                 print(" \n 第一个用例结束:成功登录")

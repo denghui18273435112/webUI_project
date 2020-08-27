@@ -157,9 +157,9 @@ class selenium:
         @return:
         """
         if name == "配课中心":
-            selenium(self.driver).FEBCS_C("#app > div > div.contentWrapper > span > div > ul > span:nth-child(3) > li > div > span:nth-child(2)")
+            selenium(self.driver).FEBCS_C("span:nth-child(3)  span:nth-child(2)")
         if name == "学校管理":
-            selenium(self.driver).FEBCS_C("#app > div > div.contentWrapper > span > div > ul > span:nth-child(9) > li > span:nth-child(2)")
+            selenium(self.driver).FEBCS_C("span:nth-child(9) span:nth-child(1)")
         if name == "配课中心1":
             selenium(self.driver).FEBCS_C("#app > div > div.contentWrapper > span > div > ul > span:nth-child(3) > li > div > span:nth-child(2)")
         if name == "配课中心2":
@@ -167,5 +167,8 @@ class selenium:
         if name == "配课中心3":
             selenium(self.driver).FEBCS_C("#app > div > div.contentWrapper > span > div > ul > span:nth-child(3) > li > div > span:nth-child(2)")
 
+    def new_inptu(self):
+        input_content = input("请输入验证码：")
+        return  input_content
 
 
