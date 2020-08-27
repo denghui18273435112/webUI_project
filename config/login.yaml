@@ -1,0 +1,8 @@
+---
+login:
+  url: "http://192.168.1.202:8108/#/Login"
+  url_ip: "http://192.168.1.202:8108/#/"
+  url1: "http://192.168.1.202:8108/#/Login"
+  text: "admin"
+  password: "admin"
+  validation_url: "http://tp.safetycms.huayustech.com"
