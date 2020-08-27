@@ -6,8 +6,9 @@ from config.Conf import ConfigYaml
 from PublicMethods.Methods import selenium
 from selenium.webdriver.common.keys import Keys
 
-#全局变量
 login = ConfigYaml().read_yaml("login.yaml","login")
+
+
 
 #@pytest.mark.usefixtures("driver")  #不用声明引入conftest.py中的driver方法
 class Test_fix_module(object):  #传object
