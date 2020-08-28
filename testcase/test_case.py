@@ -5,10 +5,7 @@ import time
 from config.Conf import ConfigYaml
 from PublicMethods.Methods import selenium
 from selenium.webdriver.common.keys import Keys
-
-
-
-
+from selenium import webdriver
 
 #@pytest.mark.usefixtures("driver")  #不用声明引入conftest.py中的driver方法
 class Test_fix_module(object):  #传object
@@ -51,7 +48,6 @@ class Test_fix_module(object):  #传object
         selenium(driver).location_name("学校管理")
         selenium(driver).FEBCS_CCSKK(location="div.leftSearch  input",content=TSMI["inquire_content"])
         selenium(driver).FEBCS_CCK(location="div.leftSearch  input")
-        time.sleep(10)
         print("\n 第二个用例结束:学校管理查询成功")
 
     def test_school_management_add(self,driver):
@@ -63,21 +59,23 @@ class Test_fix_module(object):  #传object
         TSMD = ConfigYaml().read_yaml("login.yaml","test_school_management_add")
         selenium(driver).location_name("学校管理")
         selenium(driver).FEBCS_C("div > button > span")
-        selenium(driver).FEBCS_CCSK(location="div:nth-child(1) > div > div > div.el-input.el-input--medium > input",content=TSMD["school_name"])
-        selenium(driver).FEBCS_CCSK(location="div:nth-child(2) > div > div > div > textarea",content=TSMD["describe"])
+        selenium(driver).FEBCS_CCSK(location="div.el-form-item__content  input",content=TSMD["school_name"])
+        selenium(driver).FEBCS_CCSK(location="div.el-form-item__content  textarea",content=TSMD["describe"])
         selenium(driver).FEBXP_C(location="//span//button[2]")
         print("\n 第二个用例结束:学校管理添加成功")
 
-    @pytest.mark.skip   #遇到pytest.mark.skip声明的方法一直跳过
+    #@pytest.mark.skip   #遇到pytest.mark.skip声明的方法一直跳过
     def test_Course_center(self,driver):
         """
         @param driver:
         @return:
         """
         selenium(driver).location_name(name="配课中心")
-        selenium(driver).positioning_module_get(name="课程管理")
-        selenium(driver).FEBCS_C("#app > div > div.contentWrapper > div > div > div > div:nth-child(2) > div.zzlSearch > div.rightSearch > div > button")
-        selenium(driver).FEBCS_CCSK("#app > div > div.contentWrapper > div > div > div.zzlCover.zzlCoverMH > div.contentWrapperOne > form > div > div:nth-child(2) > div > div > div > input",content="学校")
+        selenium(driver).location_name(name="课程管理")
+        selenium(driver).FEBCS_C("div.rightSearch  button.el-button > span")
+        selenium(driver).FEBCS_CCSK("div:nth-child(2)    input[placeholder=\"请输入课程标题\"]",content="学校")
+        selenium(driver).FEBCS_CVT("div:nth-child(2)    input[placeholder=\"请选择课程类型\"]",content="1")
+        time.sleep(10)
         print("\n 第三个用例结束")
 
 

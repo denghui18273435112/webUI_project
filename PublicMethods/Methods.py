@@ -1,6 +1,8 @@
 # coding=utf-8
 from selenium.webdriver.common.keys import Keys
 from config.Conf import ConfigYaml
+import time
+from selenium.webdriver.support.select import Select
 
 class selenium:
 
@@ -60,9 +62,34 @@ class selenium:
         :param content: 输入内容
         :return:
         """
-        self.driver.find_element_by_css_xpath(location).click()
-        self.driver.find_element_by_css_xpath(location).clear()
-        self.driver.find_element_by_css_xpath(location).send_keys(content)
+        self.driver.find_element_by_xpath(location).click()
+        self.driver.find_element_by_xpath(location).clear()
+        self.driver.find_element_by_xpath(location).send_keys(content)
+        self.driver.implicitly_wait(10)
+
+
+    def FEBCS_CVT(self,location,content):
+        """
+        定位-点击-下拉选择-隐性等待10S
+        find_element_by_css_selector 缩写FEBCS
+        :param location: 定位
+        :param content: 输入内容
+        :return:
+        """
+        self.driver.find_element_by_css_selector(location).click()
+        Select(self.driver.find_element_by_css_selector(location)).select_by_index(content)
+        self.driver.implicitly_wait(10)
+
+    def FEBXP_CVT(self,location,content):
+        """
+        定位-点击-下拉选择-隐性等待10S
+        find_element_by_css_selector 缩写FEBCS
+        :param location: 定位
+        :param content: 输入内容
+        :return:
+        """
+        self.driver.find_element_by_xpath(location).click()
+        Select(self.driver.find_element_by_xpath(location)).select_by_visible_text(content)
         self.driver.implicitly_wait(10)
 
     def FEBCS_CCSKK(self,location,content):
@@ -87,10 +114,10 @@ class selenium:
         :param content: 输入内容
         :return:
         """
-        self.driver.find_element_by_css_xpath(location).click()
-        self.driver.find_element_by_css_xpathr(location).clear()
-        self.driver.find_element_by_css_xpath(location).send_keys(content)
-        self.driver.find_element_by_css_xpath(location).send_keys(Keys.ENTER)
+        self.driver.find_element_by_xpath(location).click()
+        self.driver.find_element_by_xpath(location).clear()
+        self.driver.find_element_by_xpath(location).send_keys(content)
+        self.driver.find_element_by_xpath(location).send_keys(Keys.ENTER)
         self.driver.implicitly_wait(10)
 
     def FEBCS_CCK(self,location):
@@ -112,9 +139,9 @@ class selenium:
         :param location: 定位
         :return:
         """
-        self.driver.find_element_by_css_xpath(location).click()
-        self.driver.find_element_by_css_xpath(location).clear()
-        self.driver.find_element_by_css_xpath(location).send_keys(Keys.ENTER)
+        self.driver.find_element_by_xpath(location).click()
+        self.driver.find_element_by_xpath(location).clear()
+        self.driver.find_element_by_xpath(location).send_keys(Keys.ENTER)
         self.driver.implicitly_wait(10)
 
     def FEBCS_C(self,location):
@@ -160,8 +187,8 @@ class selenium:
             selenium(self.driver).FEBCS_C("span:nth-child(3)  span:nth-child(2)")
         if name == "学校管理":
             selenium(self.driver).FEBCS_C("span:nth-child(9) span:nth-child(1)")
-        if name == "配课中心1":
-            selenium(self.driver).FEBCS_C("#app > div > div.contentWrapper > span > div > ul > span:nth-child(3) > li > div > span:nth-child(2)")
+        if name == "课程管理":
+            selenium(self.driver).FEBCS_C("#app > div > div.contentWrapper > span > div > ul > span:nth-child(3) > li > ul > li:nth-child(2) > span")
         if name == "配课中心2":
             selenium(self.driver).FEBCS_C("#app > div > div.contentWrapper > span > div > ul > span:nth-child(3) > li > div > span:nth-child(2)")
         if name == "配课中心3":
