@@ -21,22 +21,19 @@ class Test_fix_module(object):  #传object
         driver.get(test_login["url"])
         driver.implicitly_wait(10)
         while True:
-            selenium(driver).FEBCS_CCSK(location=".item input[placeholder=请输入用户名]",content=test_login["text"])
-            selenium(driver).FEBCS_CCSK(location=".item input[placeholder=请输入密码]",content=test_login["password"])
-            selenium(driver).FEBCS_C(location=".verifyCode.item input[placeholder=请输入验证码]")
-
-            selenium(driver).FEBCS_CCSK(location="#verifyCode",content="xicheng")
-            #在不是万能验证的时候使用
-            #selenium(driver).FEBCS_CCSK(location="verifyCode",content=selenium(driver).new_inptu())
-
-            selenium(driver).FEBCS_C(location="#app > div > div > button")
-            #判断是否登录成功
-            if driver.current_url != test_login["validation_url"]:
+            selenium(driver).FEBCS_CCSK("input[placeholder=请输入用户名]",test_login["text"])
+            selenium(driver).FEBCS_CCSK("input[placeholder=请输入密码]",test_login["password"])
+            selenium(driver).FEBCS_C("img[alt=验证码图片]")
+            if test_login["url"]=="http://192.168.1.202:8108/#/Login":
+                selenium(driver).FEBCS_CCSK("input[placeholder=请输入验证码]","xicheng")
+            else:
+                selenium(driver).FEBCS_CCSK("input[placeholder=请输入验证码]",selenium(driver).new_inptu()) #在不是万能验证的时候使用
+            selenium(driver).FEBCS_C("button[class=loginButton]")
+            if driver.current_url != test_login["validation_url"]: #判断是否登录成功
                 print(" \n 第一个用例结束:成功登录")
                 break
             else:
                 print("\n输入的验证码错误;已再次循环登录")
-
 
     def test_school_management_inquire(self,driver):
         """
@@ -46,8 +43,8 @@ class Test_fix_module(object):  #传object
         """
         TSMI = ConfigYaml().read_yaml("login.yaml","test_school_management_inquire")
         selenium(driver).location_name("学校管理")
-        selenium(driver).FEBCS_CCSKK(location="div.leftSearch  input",content=TSMI["inquire_content"])
-        selenium(driver).FEBCS_CCK(location="div.leftSearch  input")
+        selenium(driver).FEBCS_CCSKK("div.leftSearch  input",TSMI["inquire_content"])
+        selenium(driver).FEBCS_CCK("div.leftSearch  input")
         print("\n 第二个用例结束:学校管理查询成功")
 
     def test_school_management_add(self,driver):
@@ -59,9 +56,9 @@ class Test_fix_module(object):  #传object
         TSMD = ConfigYaml().read_yaml("login.yaml","test_school_management_add")
         selenium(driver).location_name("学校管理")
         selenium(driver).FEBCS_C("div > button > span")
-        selenium(driver).FEBCS_CCSK(location="div.el-form-item__content  input",content=TSMD["school_name"])
-        selenium(driver).FEBCS_CCSK(location="div.el-form-item__content  textarea",content=TSMD["describe"])
-        selenium(driver).FEBXP_C(location="//span//button[2]")
+        selenium(driver).FEBCS_CCSK("div.el-form-item__content  input",TSMD["school_name"])
+        selenium(driver).FEBCS_CCSK("div.el-form-item__content  textarea",TSMD["describe"])
+        selenium(driver).FEBXP_C("//span//button[2]")
         print("\n 第二个用例结束:学校管理添加成功")
 
     #@pytest.mark.skip   #遇到pytest.mark.skip声明的方法一直跳过
@@ -70,11 +67,11 @@ class Test_fix_module(object):  #传object
         @param driver:
         @return:
         """
-        selenium(driver).location_name(name="配课中心")
-        selenium(driver).location_name(name="课程管理")
+        selenium(driver).location_name("配课中心")
+        selenium(driver).location_name("课程管理")
         selenium(driver).FEBCS_C("div.rightSearch  button.el-button > span")
-        selenium(driver).FEBCS_CCSK("div:nth-child(2)    input[placeholder=\"请输入课程标题\"]",content="学校")
-        selenium(driver).FEBCS_CVT("div:nth-child(2)    input[placeholder=\"请选择课程类型\"]",content="1")
+        selenium(driver).FEBCS_CCSK("div:nth-child(2)    input[placeholder=请输入课程标题]","学校")
+        #selenium(driver).FEBCS_CVT("div:nth-child(2)    input[placeholder=请选择课程类型]","1")
         time.sleep(10)
         print("\n 第三个用例结束")
 
