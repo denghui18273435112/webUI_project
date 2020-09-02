@@ -1,8 +1,11 @@
 # coding=utf-8
 from selenium.webdriver.common.keys import Keys
 from config.Conf import ConfigYaml
-import time
 from selenium.webdriver.support.select import Select
+import pytest
+from selenium import webdriver
+import time
+
 
 class selenium:
 
@@ -40,6 +43,8 @@ class selenium:
         :param none:
         """
         self.driver.quit()
+
+
 
     def FEBCS_CCSK(self,location,content):
         """
@@ -197,5 +202,38 @@ class selenium:
     def new_inptu(self):
         input_content = input("请输入验证码：")
         return  input_content
+
+
+
+
+
+    def if_list_contrast(self,inquire_field,contrast):
+        """
+        获取列表某字段的文本信息  与查询字段进行判断，是否存在包含关系
+        inquire_field  需要查询的字段名称
+        contrast  输入的查询条件
+        @return:
+        """
+        if  inquire_field=="学校管理-学校名称":
+            location="#app > div > div.contentWrapper > div > div > div.zzlCover.zzlCoverMH > div.zzlTableList.zzlTableListMaxH > div.el-table.el-table--fit.el-table--enable-row-transition > div.el-table__body-wrapper.is-scrolling-none > table > tbody > tr > td.el-table_1_column_1.is-center > div.cell.el-tooltip"
+
+        list = self.driver.find_elements_by_css_selector(location)
+
+        print(list)
+        if len(list) == 0:
+            print("列表没有数据")
+        else:
+            for i in list:
+                if str(contrast in i.text) == "True":
+                    print("列表数据和查询条件匹配")
+                    print(i.text)
+                    print(contrast)
+                else:
+                    print("列表数据和查询条件匹配")
+                    pytest.xfail("列表数据和查询条件不匹配")
+
+
+
+
 
 

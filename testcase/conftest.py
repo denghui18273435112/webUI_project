@@ -12,6 +12,7 @@ def driver():
    #前置-成功登录
     driver = webdriver.Chrome()
     driver.maximize_window()
+
     login_YAML = ConfigYaml().read_yaml("login.yaml")
     test_login = login_YAML["test_login"]
     driver.get(test_login["url"])
