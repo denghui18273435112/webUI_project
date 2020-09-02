@@ -14,3 +14,7 @@ test_school_management_add:
 
 test_school_management_inquire:
   inquire_content: "学校"
+
+test_school_management_alter:
+  school_name: "会同三中"
+  describe: "会同三中描述"
