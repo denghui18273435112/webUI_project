@@ -30,20 +30,22 @@ driver.execute_script('document.getElementsByClassName("right")[0].scrollTop=100
 
 time.sleep(5)
 
+
+kecheng = driver.find_element_by_css_selector("div:nth-child(19) div.w-e-text-container")
+time.sleep(5)
+kecheng.click()
+print("dada")
+time.sleep(5)
+kecheng.send_keys("好好学习")
+
+
+
+
+# x = "w-e-text-container"
+# y = "聂荣给"
+# #test_js="document.getElementsByClassName(\"{0}\")[0].contentWindow.document.body.innerText={1}".format(x,y)
+# test_js="document.getElementsByClassName(\"{0}\").innerHTML={1};".format(x,y)
 #
-# kecheng = driver.find_element_by_css_selector("div:nth-child(19) div.w-e-text-container")
-# kecheng.click()
-# print("dada")
-# time.sleep(5)
-# kecheng.send_keys("好好学习")
-
-
-
-x = "w-e-text-container"
-y = "聂荣给"
-#test_js="document.getElementsByClassName(\"{0}\")[0].contentWindow.document.body.innerText={1}".format(x,y)
-test_js="document.getElementsByClassName(\"{0}\").innerHTML={1};".format(x,y)
-
-driver.execute_script(test_js)
+# driver.execute_script(test_js)
 
 time.sleep(5)
