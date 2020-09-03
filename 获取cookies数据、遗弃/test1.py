@@ -19,7 +19,7 @@ yanzhengma= driver.find_element_by_css_selector("input[placeholder=请输入验�
 yanzhengma.click()
 yanzhengma.send_keys(input("请输入密码"))
 driver.find_element_by_css_selector("button[class=loginButton]").click()
-time.sleep(0.5)
+time.sleep(2)
 driver.find_element_by_css_selector("span:nth-child(3)  span:nth-child(2)").click()
 time.sleep(0.5)
 driver.find_element_by_css_selector("#app > div > div.contentWrapper > span > div > ul > span:nth-child(3) > li > ul > li:nth-child(2) > span").click()
@@ -29,12 +29,21 @@ driver.find_element_by_css_selector("#app > div > div.contentWrapper > div > div
 driver.execute_script('document.getElementsByClassName("right")[0].scrollTop=10000')
 
 time.sleep(5)
-kecheng = driver.find_element_by_css_selector("#text-elem24442363027907588")
-kecheng.click()
-kecheng.send_keys("好好学习")
+
+#
+# kecheng = driver.find_element_by_css_selector("div:nth-child(19) div.w-e-text-container")
+# kecheng.click()
+# print("dada")
+# time.sleep(5)
+# kecheng.send_keys("好好学习")
 
 
 
+x = "w-e-text-container"
+y = "聂荣给"
+#test_js="document.getElementsByClassName(\"{0}\")[0].contentWindow.document.body.innerText={1}".format(x,y)
+test_js="document.getElementsByClassName(\"{0}\").innerHTML={1};".format(x,y)
 
+driver.execute_script(test_js)
 
-
+time.sleep(5)
