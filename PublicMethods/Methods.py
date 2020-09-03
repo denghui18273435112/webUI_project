@@ -66,11 +66,7 @@ class selenium:
         location: tElementsByClassName定位
         @return:
         """
-        print(location)
-        print(up)
-        js = 'document.getElementsByClassName("{}")[0].scrollTop={}'.format(location,up)
-        print(js)
-        self.driver.execute_script(js)
+        self.driver.execute_script( 'document.getElementsByClassName("{}")[0].scrollTop={}'.format(location,up))
 
 
 
@@ -86,6 +82,20 @@ class selenium:
         self.driver.find_element_by_css_selector(location).click()
         self.driver.find_element_by_css_selector(location).clear()
         self.driver.find_element_by_css_selector(location).send_keys(content)
+        self.driver.implicitly_wait(10)
+        time.sleep(0.3)
+
+    def FEBCS_new_CCSK(self,location,content):
+        """
+        定位-点击-清空-输入-隐性等待10S
+        find_element_by_css_selector 缩写FEBCS
+        :param location: 定位
+        :param content: 输入内容
+        :return:
+        """
+        new_driver = self.driver.find_element_by_css_selector(location)
+        new_driver.click()
+        new_driver.send_keys(content)
         self.driver.implicitly_wait(10)
         time.sleep(0.3)
 

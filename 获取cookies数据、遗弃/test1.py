@@ -26,9 +26,7 @@ driver.find_element_by_css_selector("#app > div > div.contentWrapper > span > di
 time.sleep(0.5)
 driver.find_element_by_css_selector("#app > div > div.contentWrapper > div > div > div > div:nth-child(2) > div.zzlSearch > div.rightSearch > div > button > span").click()
 
-for i in range(1,1000,15):
-    js = "window.scrollTo(0,{})".format(i)
-    driver.execute_script(js)
+driver.execute_script('document.getElementsByClassName("right")[0].scrollTop=10000')
 
 time.sleep(5)
 kecheng = driver.find_element_by_css_selector("#text-elem24442363027907588")

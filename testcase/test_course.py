@@ -53,7 +53,7 @@ class Test_course(object):
 
         #设置课程简介
         selenium(driver).roll()
-        selenium(driver).FEBCS_CCSK("#text-elem4900506382455796","内容")
+        selenium(driver).FEBCS_new_CCSK("div[id=text-elem4900506382455796]","内容")
 
         time.sleep(5)
         print("\n 第一个用例结束:添加课程")
