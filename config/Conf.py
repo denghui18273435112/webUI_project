@@ -10,6 +10,7 @@ _db_config_file = _config_path +os.sep+"db_conf.yaml"     #定义db_conf.yaml的
 _log_path = BASE_DIR +os.sep+"logs"                        #定义log文件生产路径
 _data_path =BASE_DIR +os.sep+"data"                        #定义data文件的路径
 _report_path =BASE_DIR +os.sep+"report"                        #定义report文件的路径
+_file_path =BASE_DIR +os.sep+"file"
 
 def Yaml_document_location(Yaml_name):
     current =os.path.abspath(__file__)                          #当前文件的路径
@@ -17,6 +18,13 @@ def Yaml_document_location(Yaml_name):
     _config_path = BASE_DIR +os.sep+"config"                   #定义config的路径
     _yonglie_file = _config_path +os.sep+Yaml_name            #定义conf.yaml的路径
     return  _yonglie_file
+
+def get_file_path():
+    """
+    :return: file文件夹的绝对路径
+    """
+    return  _file_path
+
 
 def get_report_path():
     """
@@ -71,7 +79,8 @@ class ConfigYaml:
             return self.login[a][b]
 
 if __name__ == '__main__':
-    print(ConfigYaml().read_yaml("login.yaml","login"))
+    #print(ConfigYaml().read_yaml("login.yaml","login"))
+    print(get_file_path())
 
 
 

@@ -26,32 +26,36 @@ class Test_course(object):
         selenium(driver).location_name("课程管理")
         selenium(driver).FEBCS_C("div.rightSearch  button.el-button > span")
 
-        #课程信息
-        selenium(driver).FEBCS_CCSK("div:nth-child(2)    input[placeholder=请输入课程标题]","学校")
-        selenium(driver).FEBCS_pull_down_choose(" input[placeholder=请选择课程类型]","必修")
-        selenium(driver).FEBCS_CCSK("div.contentWrapperOne  div:nth-child(4)  input","10")
-        selenium(driver).FEBCS_CCSK("div:nth-child(5)  input.el-input__inner","标签")
+        # #课程信息
+        # selenium(driver).FEBCS_CCSK("div:nth-child(2)    input[placeholder=请输入课程标题]","学校")
+        # selenium(driver).FEBCS_pull_down_choose(" input[placeholder=请选择课程类型]","必修")
+        # selenium(driver).FEBCS_CCSK("div.contentWrapperOne  div:nth-child(4)  input","10")
+        # selenium(driver).FEBCS_CCSK("div:nth-child(5)  input.el-input__inner","标签")
+        #
+        # #设计课程目标
+        # selenium(driver).FEBCS_CCSK("div:nth-child(7)  div:nth-child(1) > div > div > input","4")
+        # selenium(driver).FEBCS_CCSK("div:nth-child(7)  div:nth-child(2) > div > div > input","20")
+        # selenium(driver).FEBCS_CCSK("div:nth-child(8)  div:nth-child(1) > div > div > input","4")
+        # selenium(driver).FEBCS_CCSK("div:nth-child(8)  div:nth-child(2) > div > div > input","20")
+        # selenium(driver).FEBCS_CCSK("div:nth-child(9)  div:nth-child(1) > div > div > input","4")
+        # selenium(driver).FEBCS_CCSK("div:nth-child(9)  div:nth-child(2) > div > div > input","20")
+        # selenium(driver).FEBCS_CCSK("div:nth-child(10)  div:nth-child(1) > div > div > input","40")
+        # selenium(driver).FEBCS_CCSK(" input[placeholder=选择日期]","2020-09-03")
+        # selenium(driver).FEBCS_pull_down_choose("input[placeholder=请选择试卷]","测试1")
+        # selenium(driver).FEBCS_C("div:nth-child(13)  label:nth-child(1) > span > span")
+        # selenium(driver).FEBCS_C("div:nth-child(14)  label:nth-child(2) > span> span")
+        #
+        # #设置相关图片
+        # selenium(driver).FEBXP_C("//button/span[contains(text(),\"上传封面\")]")
+        # upload_files("banner.png")
+        # selenium(driver).FEBXP_C("//button/span[contains(text(),\"上传banner图\")]")
+        # upload_files("banner.png")
 
-        #设计课程目标
-        selenium(driver).FEBCS_CCSK("div:nth-child(7)  div:nth-child(1) > div > div > input","4")
-        selenium(driver).FEBCS_CCSK("div:nth-child(7)  div:nth-child(2) > div > div > input","20")
-        selenium(driver).FEBCS_CCSK("div:nth-child(8)  div:nth-child(1) > div > div > input","4")
-        selenium(driver).FEBCS_CCSK("div:nth-child(8)  div:nth-child(2) > div > div > input","20")
-        selenium(driver).FEBCS_CCSK("div:nth-child(9)  div:nth-child(1) > div > div > input","4")
-        selenium(driver).FEBCS_CCSK("div:nth-child(9)  div:nth-child(2) > div > div > input","20")
-        selenium(driver).FEBCS_CCSK("div:nth-child(10)  div:nth-child(1) > div > div > input","40")
-        selenium(driver).FEBCS_CCSK(" input[placeholder=选择日期]","2020-09-03")
-        selenium(driver).FEBCS_pull_down_choose("input[placeholder=请选择试卷]","测试1")
-        selenium(driver).FEBCS_C("div:nth-child(13)  label:nth-child(1) > span > span")
-        selenium(driver).FEBCS_C("div:nth-child(14)  label:nth-child(2) > span> span")
+        #设置课程简介
+        selenium(driver).roll()
+        selenium(driver).FEBCS_CCSK("#text-elem4900506382455796","内容")
 
-        #上传文件
-        selenium(driver).FEBXP_C("//button/span[contains(text(),\"上传封面\")]")
-        upload_files("banner.png")
-
-
-
-        time.sleep(10)
+        time.sleep(5)
         print("\n 第一个用例结束:添加课程")
 
 

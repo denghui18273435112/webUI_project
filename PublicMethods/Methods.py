@@ -60,6 +60,21 @@ class selenium:
         self.driver.find_element_by_css_selector(location).send_keys(content)
 
 
+    def roll(self,location="right",up="10000"):
+        """
+        仅限于页面自带的进度条
+        location: tElementsByClassName定位
+        @return:
+        """
+        print(location)
+        print(up)
+        js = 'document.getElementsByClassName("{}")[0].scrollTop={}'.format(location,up)
+        print(js)
+        self.driver.execute_script(js)
+
+
+
+
     def FEBCS_CCSK(self,location,content):
         """
         定位-点击-清空-输入-隐性等待10S

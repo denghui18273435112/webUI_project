@@ -1,9 +1,12 @@
 import win32gui
 import win32con
-
+from config.Conf import get_file_path
+import os
+import time
 
 def upload_files(filePath, browser_type="chrome"):
         '''
+        上传文件的方法
         通过pywin32模块实现文件上传的操作
         :param filePath: 文件的绝对路径
         :param browser_type: 浏览器类型（默认值为chrome）
@@ -30,5 +33,9 @@ def upload_files(filePath, browser_type="chrome"):
         button = win32gui.FindWindowEx(dialog, 0, 'Button', "打开(&O)")  # 二级
 
         # 输入文件的绝对路径，点击“打开”按钮
-        win32gui.SendMessage(edit, win32con.WM_SETTEXT, None, filePath)  # 发送文件路径
+        # print(get_file_path())
+        # print(filePath)
+        file=get_file_path()+os.sep+filePath
+        win32gui.SendMessage(edit, win32con.WM_SETTEXT, None, file)  # 发送文件路径
         win32gui.SendMessage(dialog, win32con.WM_COMMAND, 1, button)  # 点击打开按钮
+        time.sleep(3)
