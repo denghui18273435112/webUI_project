@@ -60,13 +60,14 @@ class selenium:
         self.driver.find_element_by_css_selector(location).send_keys(content)
 
 
-    def roll(self,location="right",up="10000"):
+    def roll(self,location="right",up="500"):
         """
         仅限于页面自带的进度条
         location: tElementsByClassName定位
         @return:
         """
         self.driver.execute_script( 'document.getElementsByClassName("{}")[0].scrollTop={}'.format(location,up))
+        time.sleep(2)
 
 
 
@@ -95,6 +96,7 @@ class selenium:
         """
         new_driver = self.driver.find_element_by_css_selector(location)
         new_driver.click()
+        print("点击")
         new_driver.send_keys(content)
         self.driver.implicitly_wait(10)
         time.sleep(0.3)
