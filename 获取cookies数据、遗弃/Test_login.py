@@ -1,39 +1,26 @@
-import pytest
 from selenium import webdriver
-from PublicMethods.Methods import selenium
-from config.Conf import ConfigYaml
+import win32gui
+import win32con
 import time
-
-class Test_login(selenium):
-
-    def test_setup(self):  # 登陆部分
-        url= ConfigYaml().read_yaml("login.yaml","login")
-        # self.driver =webdriver.Chrome()
-        # self.driver.maximize_window()   #窗口最大化
-        self.driver.get(url["url"])  #利用谷歌浏览器打开百度窗口
-        self.driver.implicitly_wait(10)
-        while True:
-            login = ConfigYaml().read_yaml("login.yaml","login")
-
-            selenium().FEBCS_CCSK(location=".item input[placeholder=请输入用户名]",content=login["text"])
-            selenium().FEBCS_CCSK(location=".item input[placeholder=请输入密码]",content=login["password"])
-            #BasePage().FEBCS_C(location=".verifyCode.item input[placeholder=请输入验证码]")  #更新验证码
-            selenium().FEBCS_CCSK(location="#verifyCode",content="xicheng")
-            #在不是万能验证的时候使用
-            # yanzhenma =input("请输入验证码：")
-            # BasePage().FEBCS_CCSK(location="verifyCode",content=yanzhenma)
-            selenium().FEBCS_C(location="#app > div > div > button")
-
-            url =login["validation_url"]
-            if self.driver.current_url != url:
-                break
-            else:
-                print("输入的验证码错误;已再次循环登录")
-
-    def test_teardown(self):
-        self.driver.quit()
-
-
-if __name__ == "__main__":
-  Test_login().test_setup()
-    
+driver=webdriver.Chrome()
+driver.get('https://www.baidu.com')
+driver.maximize_window()#最大
+driver.find_element_by_class_name('soutu-btn').click()
+time.sleep(2)
+imgpath='D:\\abc.jpg'
+driver.find_element_by_css_selector('input[value=上传图片]').click()
+time.sleep(2)
+# driver.find_element_by_class_name('upload-pic').send_keys('imgpath')
+#一级顶层窗口，此处title为上传窗口名称，浏览器不一样上传窗口名称不一样
+dialog = win32gui.FindWindow("#32770",'打开')
+#二级窗口
+ComboBoxEx32 = win32gui.FindWindowEx(dialog,0,"ComboBoxEx32",None)
+#三级窗口
+comboBox = win32gui.FindWindowEx(ComboBoxEx32,0,"ComboBox",None)
+#四级窗口
+edit = win32gui.FindWindowEx(comboBox,0,'Edit',None)
+button = win32gui.FindWindowEx(dialog,0,'Button',None)
+#执行操作 输入文件路径
+win32gui.SendMessage(edit,win32con.WM_SETTEXT,None,'D:\\abc.jpg')
+#点击打开上传文件
+win32gui.SendMessage(dialog,win32con.WM_COMMAND,1,button)

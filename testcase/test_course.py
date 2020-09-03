@@ -7,6 +7,9 @@ from selenium.webdriver.common.keys import Keys
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select
 import os
+from win32 import win32gui
+from PublicMethods.WinUpLoadFile import upload_files
+
 
 login_YAML = ConfigYaml().read_yaml("login.yaml")
 @pytest.mark.usefixtures("driver")  #不用声明引入conftest.py中的driver方法
@@ -42,21 +45,21 @@ class Test_course(object):
         selenium(driver).FEBCS_C("div:nth-child(13)  label:nth-child(1) > span > span")
         selenium(driver).FEBCS_C("div:nth-child(14)  label:nth-child(2) > span> span")
 
-        #上传文件F:\banner.png
-        selenium(driver).send_keys("div:nth-child(16) button","F:\\banner.png")
-        os.system()
-        dialog = win32gui.FindWindow("#32770", "打开")  # 一级窗口  ‘打开窗口’
-        ComboBoxEx32 = win32gui.FindWindowEx(dialog, 0, "ComboBoxEx32", None)  # 二级
-        ComboBox = win32gui.FindWindowEx(ComboBoxEx32, 0, "ComboBox", None)  # 三级
-        edit = win32gui.FindWindowEx(ComboBox, 0, "Edit", None)  # 四级
-        button = win32gui.FindWindowEx(dialog, 0, "Button", None)  # 四级
-        # 往文件名编辑框中输入文件路径
-        # 上传操作
-        win32gui.SendMessage(edit, win32con.WM_SETTEXT, None, "E:\\1.jpg")  # 放入上传文件的绝对路径
-        win32gui.SendMessage(dialog, win32con.WM_COMMAND, 1, button)  # 点击打开按钮
+        #上传文件
+        selenium(driver).FEBXP_C("//button/span[contains(text(),\"上传封面\")]")
+        upload_files("banner.png")
 
-        time.sleep(5)
+
+
+        time.sleep(10)
         print("\n 第一个用例结束:添加课程")
+
+
+
+
+
+
+
 
 
 if __name__ == "__main__":
