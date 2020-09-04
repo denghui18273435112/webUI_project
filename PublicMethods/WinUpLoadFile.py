@@ -36,6 +36,7 @@ def upload_files(filePath, browser_type="chrome"):
         # print(get_file_path())
         # print(filePath)
         file=get_file_path()+os.sep+filePath
+        print(file)
         win32gui.SendMessage(edit, win32con.WM_SETTEXT, None, file)  # 发送文件路径
         win32gui.SendMessage(dialog, win32con.WM_COMMAND, 1, button)  # 点击打开按钮
         time.sleep(3)

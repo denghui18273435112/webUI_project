@@ -6,7 +6,7 @@ import pytest
 from selenium import webdriver
 import time
 from selenium.webdriver.support.ui import Select
-
+from PublicMethods.WinUpLoadFile import upload_files
 
 class selenium:
 
@@ -67,8 +67,23 @@ class selenium:
         @return:
         """
         self.driver.execute_script( 'document.getElementsByClassName("{}")[0].scrollTop={}'.format(location,up))
-        time.sleep(2)
+        time.sleep(0.5)
 
+    def editor_upload_photo(self,location1="i.w-e-icon-image",location2="i.w-e-icon-upload2",photo="banner.png"):
+        """
+        编辑器中上传图片
+        @param location1:定位编辑器图片上传位置
+        @param location2: 定位图片上传位置
+        @param photo: 图片文件的名称
+        @return:
+        """
+        self.driver.find_element_by_css_selector(location1).click()
+        time.sleep(0.5)
+        self.driver.find_element_by_css_selector(location2).click()
+        time.sleep(0.5)
+        upload_files(photo)
+        self.driver.implicitly_wait(10)
+        time.sleep(0.5)
 
 
 
@@ -84,7 +99,7 @@ class selenium:
         self.driver.find_element_by_css_selector(location).clear()
         self.driver.find_element_by_css_selector(location).send_keys(content)
         self.driver.implicitly_wait(10)
-        time.sleep(0.3)
+        time.sleep(0.5)
 
     def FEBCS_new_CCSK(self,location,content):
         """
@@ -99,7 +114,7 @@ class selenium:
         print("点击")
         new_driver.send_keys(content)
         self.driver.implicitly_wait(10)
-        time.sleep(0.3)
+        time.sleep(0.5)
 
     def FEBXP_CCSK(self,location,content):
         """
@@ -113,7 +128,7 @@ class selenium:
         self.driver.find_element_by_xpath(location).clear()
         self.driver.find_element_by_xpath(location).send_keys(content)
         self.driver.implicitly_wait(10)
-        time.sleep(0.3)
+        time.sleep(0.5)
 
     def FEBCS_CVT(self,location,content):
         """
@@ -126,7 +141,7 @@ class selenium:
         self.driver.find_element_by_css_selector(location).click()
         Select(self.driver.find_element_by_css_selector(location)).select_by_index(content)
         self.driver.implicitly_wait(10)
-        time.sleep(0.3)
+        time.sleep(0.5)
 
     def FEBXP_CVT(self,location,content):
         """
@@ -139,7 +154,7 @@ class selenium:
         self.driver.find_element_by_xpath(location).click()
         Select(self.driver.find_element_by_xpath(location)).select_by_visible_text(content)
         self.driver.implicitly_wait(10)
-        time.sleep(0.3)
+        time.sleep(0.5)
 
 
     def FEBCS_CCSKK(self,location,content):
@@ -155,7 +170,7 @@ class selenium:
         self.driver.find_element_by_css_selector(location).send_keys(content)
         self.driver.find_element_by_css_selector(location).send_keys(Keys.ENTER)
         self.driver.implicitly_wait(10)
-        time.sleep(0.3)
+        time.sleep(0.5)
 
 
     def FEBXP_CCSKK(self,location,content):
@@ -171,7 +186,7 @@ class selenium:
         self.driver.find_element_by_xpath(location).send_keys(content)
         self.driver.find_element_by_xpath(location).send_keys(Keys.ENTER)
         self.driver.implicitly_wait(10)
-        time.sleep(0.3)
+        time.sleep(0.5)
 
 
     def FEBCS_CCK(self,location):
@@ -185,7 +200,7 @@ class selenium:
         self.driver.find_element_by_css_selector(location).clear()
         self.driver.find_element_by_css_selector(location).send_keys(Keys.ENTER)
         self.driver.implicitly_wait(10)
-        time.sleep(0.3)
+        time.sleep(0.5)
 
 
     def FEBXP_CCK(self,location):
@@ -199,7 +214,7 @@ class selenium:
         self.driver.find_element_by_xpath(location).clear()
         self.driver.find_element_by_xpath(location).send_keys(Keys.ENTER)
         self.driver.implicitly_wait(10)
-        time.sleep(0.3)
+        time.sleep(0.5)
 
 
     def FEBCS_C(self,location):
@@ -211,7 +226,7 @@ class selenium:
         """
         self.driver.find_element_by_css_selector(location).click()
         self.driver.implicitly_wait(10)
-        time.sleep(0.3)
+        time.sleep(0.5)
 
     def FEBCS_pull_down_choose(self,location,option_name):
         """
@@ -236,7 +251,7 @@ class selenium:
         """
         self.driver.find_element_by_xpath(location).click()
         self.driver.implicitly_wait(10)
-        time.sleep(0.3)
+        time.sleep(0.5)
 
 
 
@@ -271,7 +286,7 @@ class selenium:
             selenium(self.driver).FEBCS_C("#app > div > div.contentWrapper > span > div > ul > span:nth-child(3) > li > div > span:nth-child(2)")
         if name == "配课中心3":
             selenium(self.driver).FEBCS_C("#app > div > div.contentWrapper > span > div > ul > span:nth-child(3) > li > div > span:nth-child(2)")
-        time.sleep(0.3)
+        time.sleep(0.5)
 
 
 
@@ -299,7 +314,9 @@ class selenium:
                 else:
                     print("列表数据和查询条件匹配")
                     pytest.xfail("列表数据和查询条件不匹配")
-        time.sleep(0.3)
+        time.sleep(0.5)
+
+
 
 
 
