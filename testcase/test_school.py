@@ -8,6 +8,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium import webdriver
 import allure
 import pytest
+from PublicMethods.Allure import new_allure
 
 login_YAML = ConfigYaml().read_yaml("login.yaml")
 @pytest.mark.usefixtures("driver")  #不用声明引入conftest.py中的driver方法
@@ -63,6 +64,7 @@ class Test_school(object):  #传object
         selenium(driver).FEBCS_CCSK("div.el-form-item__content  textarea",TSMA["describe"])
         selenium(driver).FEBXP_C("//span//button[2]")
         print("\n 第三个用例结束:学校管理修改成功")
+        new_allure(test_title=" 学校管理修改")
 
     @allure.story('学校管理 删除')
     def test_school_management_del(self,driver):

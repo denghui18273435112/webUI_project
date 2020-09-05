@@ -13,9 +13,11 @@ from PublicMethods.WinUpLoadFile import upload_files
 
 login_YAML = ConfigYaml().read_yaml("login.yaml")
 @pytest.mark.usefixtures("driver")  #不用声明引入conftest.py中的driver方法
+@allure.feature('课程管理')
 class Test_course(object):
 
      #@pytest.mark.skip   #遇到pytest.mark.skip声明的方法一直跳过
+    @allure.story('课程添加')
     def test_Course_center_add(self,driver):
         """
         添加课程数据
