@@ -36,4 +36,4 @@ class YamlReaber:
         return  self._data_all
 
 if __name__ == '__main__':
-    print(YamlReaber(config.Conf.Yaml_document_location("login.yaml")).data())
+    print(YamlReaber(config.Conf.get_config_file()).data())

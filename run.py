@@ -10,6 +10,6 @@ if __name__ == "__main__":
 
 
 
-    pytest.main(["-s","testcase","--alluredir",Base.report_path()])  # 运行testcase目录下所有test开头的方法
+    pytest.main(["-s","./testcase/Test_school.py","--alluredir",Base.report_path()])  # 运行testcase目录下所有test开头的方法
     Base.allure_report(Base.report_path(),Base.report_html_path())
     # Base.send_mail(content=Base.report_path(),title="测试自动发送邮件")
