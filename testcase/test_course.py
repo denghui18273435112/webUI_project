@@ -62,8 +62,8 @@ class Test_course(object):
         #课程目录页面
         y = ["第1章","第2章","第3章","第4章"]
         for x in y:
-            time.sleep(2)
-            selenium(driver).FEBCS_C("div.left  span:nth-child(1)  svg")
+            time.sleep(1)
+            selenium(driver).FEBCS_C("div.left span:nth-child(1) svg")
             time.sleep(0.5)
             selenium(driver).FEBCS_CCSK("input[placeholder=请输入章的名称]",x)
             selenium(driver).FEBCS_C("body > div.el-dialog__wrapper   button.el-button.zzlPrimary  span")
