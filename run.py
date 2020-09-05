@@ -11,6 +11,6 @@ if __name__ == "__main__":
 
 
     #jenkins运行上使用
-    pytest.main(["-s","./testcase/Test_school.py","--alluredir",Base.report_path()])  # 运行testcase目录下所有test开头的方法
+    pytest.main(["-s","./testcase/test_school.py","--alluredir",Base.report_path()])  # 运行testcase目录下所有test开头的方法
     Base.allure_report(Base.report_path(),Base.report_html_path())
 

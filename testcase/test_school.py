@@ -24,12 +24,13 @@ class Test_school(object):  #传object
         @return:  selenium(self.driver).resfresh()
         """
         TSMI = login_YAML["test_school_management_inquire"]
-        selenium(driver).location_name("学校管理")
+        selenium(driver).location_name(TSMI[module_name])
         selenium(driver).resfresh()
 
         selenium(driver).FEBCS_CCSKK("div.leftSearch  input",TSMI["inquire_content"])
         selenium(driver).if_list_contrast(inquire_field="学校管理-学校名称",contrast=TSMI["inquire_content"])
         print("\n 第一个用例结束:学校管理查询成功")
+        # selenium(driver).new_allure(module_name=TSMI[module_name],test_name=TSMI[test_name])
 
     @allure.story('学校管理添加')
     def test_school_management_add(self,driver):
@@ -47,6 +48,7 @@ class Test_school(object):  #传object
         selenium(driver).FEBCS_CCSK("div.el-form-item__content  textarea",TSMD["describe"])
         selenium(driver).FEBXP_C("//span//button[2]")
         print("\n 第二个用例结束:学校管理添加成功")
+        # selenium(driver).new_allure(module_name="学校管理",test_name="学校管理添加")
 
     @allure.story('学校管理修改')
     def test_school_management_alter(self,driver):
@@ -64,7 +66,7 @@ class Test_school(object):  #传object
         selenium(driver).FEBCS_CCSK("div.el-form-item__content  textarea",TSMA["describe"])
         selenium(driver).FEBXP_C("//span//button[2]")
         print("\n 第三个用例结束:学校管理修改成功")
-        new_allure(test_title=" 学校管理修改")
+        # selenium(driver).new_allure(module_name="学校管理",test_name="学校管理修改")
 
     @allure.story('学校管理 删除')
     def test_school_management_del(self,driver):
@@ -80,9 +82,9 @@ class Test_school(object):  #传object
         selenium(driver).FEBCS_C("div.el-table__fixed-body-wrapper  tr:nth-child(1) > td.el-table_1_column_5 span:nth-child(2)")
         selenium(driver).FEBCS_C("div > button.el-button--primary > span")
         print("\n 第四个用例结束:学校管理删除成功")
-        selenium(driver).new_allure()
+        # selenium(driver).new_allure(module_name="学校管理",test_name="学校管理 删除")
 
 
 if __name__ == "__main__":
      pytest.main(['-s', '-q', '--alluredir', './report/html'])
-     #pytest.main(['-s','-r','--verbose','Test_school.py'])
+     #pytest.main(['-s','-r','--verbose','test_school.py'])
