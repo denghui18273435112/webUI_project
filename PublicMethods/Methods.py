@@ -85,6 +85,18 @@ class selenium:
         self.driver.implicitly_wait(10)
         time.sleep(0.5)
 
+    def upload_photo(self,location1="i.w-e-icon-image",photo="banner.png"):
+        """
+        上传图片
+        @param location1: 定位图片上传位置
+        @param photo: 图片文件的名称
+        @return:
+        """
+        self.driver.find_element_by_css_selector(location1).click()
+        time.sleep(0.5)
+        upload_files(photo)
+        time.sleep(0.5)
+
 
 
     def FEBCS_CCSK(self,location,content):
@@ -226,7 +238,23 @@ class selenium:
         """
         self.driver.find_element_by_css_selector(location).click()
         self.driver.implicitly_wait(10)
+        time.sleep(1)
+
+    def FEBXP_C(self,location=None,button_name=None):
+        """
+        定位-点击-隐性等待10S
+        find_element_by_css_xpath 缩写FEBXP
+        :param location: 定位
+        :button_name: 按钮的名称
+        :return:
+        """
+        if button_name != None:
+            self.driver.find_element_by_xpath("//span[contains(text(),\"{0}\")]".format(button_name)).click()
+        if location != None:
+            self.driver.find_element_by_xpath(location).click()
+        self.driver.implicitly_wait(10)
         time.sleep(0.5)
+
 
     def FEBCS_pull_down_choose(self,location,option_name):
         """
@@ -240,19 +268,6 @@ class selenium:
         self.driver.find_element_by_xpath('//span[contains(text(),"{0}")]'.format(option_name)).click()
         time.sleep(0.5)
         self.driver.implicitly_wait(10)
-
-
-    def FEBXP_C(self,location):
-        """
-        定位-点击-隐性等待10S
-        find_element_by_css_xpath 缩写FEBXP
-        :param location: 定位
-        :return:
-        """
-        self.driver.find_element_by_xpath(location).click()
-        self.driver.implicitly_wait(10)
-        time.sleep(0.5)
-
 
 
 

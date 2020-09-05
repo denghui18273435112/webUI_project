@@ -7,13 +7,14 @@ test_login:
   password: "admin"
   validation_url: "http://tp.safetycms.huayustech.com"
   new_url: "http://192.168.1.202:8117/#/Login"
+  SCHOOL: "moxicheng zzl123"
 
 test_school_management_add:
   school_name: "会同三中"
   describe: "会同三中描述"
 
 test_school_management_inquire:
-  inquire_content: "学校"
+  inquire_content: "学校22"
 
 test_school_management_alter:
   school_name: "会同三中"

@@ -6,12 +6,21 @@ import time
 from config.Conf import ConfigYaml
 from PublicMethods.Methods import selenium
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.chrome.options import Options
+
 
 @pytest.fixture(scope="session")  #所有的测试文件执行前执行一次
 def driver():
    #前置-成功登录
+
+    # option = webdriver.ChromeOptions()
+    # option.add_argument('headless')
+    # driver = webdriver.Chrome(options=option)
+
     driver = webdriver.Chrome()
+
     driver.maximize_window()
+
 
     login_YAML = ConfigYaml().read_yaml("login.yaml")
     test_login = login_YAML["test_login"]
