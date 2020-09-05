@@ -333,14 +333,14 @@ class selenium:
                     pytest.xfail("列表数据和查询条件不匹配")
         time.sleep(0.5)
 
-    def new_allure(self,test_title="test",sheet_name=None,case_model=None):
+    def new_allure(self,module_name=None,test_name=None):
            #allure
         #sheet名称  feature 一级标签
-        allure.dynamic.feature("test3213")
+        allure.dynamic.feature(module_name)
         #模块   story 二级标签
-        allure.dynamic.story("None123213")
+        allure.dynamic.story()
         #用例名称  title
-        allure.dynamic.title(test_title)
+        allure.dynamic.title(test_name)
         #请求URL  请求类型 期望结果 实际结果描述
         desc = "<font color='red'>当前执行时间: </font> {}<Br/>" \
                 "<font color='red'>请求URL: </font> {}<Br/>" \
