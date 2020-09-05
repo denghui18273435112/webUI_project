@@ -38,12 +38,12 @@ def allure_report(report_path,report_html):
 
 def report_path():
 
-    return  Conf.get_report_path()+os.sep+"{}-result".format(str(datetime.now().strftime("%Y%m%d%H%M")))  #本地生成报告
-    #return  Conf.get_report_path()+os.sep+"result"  ##jenkins生成报告
+    #return  Conf.get_report_path()+os.sep+"{}-result".format(str(datetime.now().strftime("%Y%m%d%H%M")))  #本地生成报告
+    return  Conf.get_report_path()+os.sep+"result"  ##jenkins生成报告
 
 def report_html_path():
-    return Conf.get_report_path()+os.sep+"{}--html".format(str(datetime.now().strftime("%Y%m%d%H%M")))  #本地生成报告
-    #return Conf.get_report_path()+os.sep+"html" ##jenkins生成报告
+    #return Conf.get_report_path()+os.sep+"{}--html".format(str(datetime.now().strftime("%Y%m%d%H%M")))  #本地生成报告
+    return Conf.get_report_path()+os.sep+"html" ##jenkins生成报告
 
 if __name__ == '__main__':
     pass
