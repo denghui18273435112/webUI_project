@@ -16,7 +16,7 @@ login_YAML = ConfigYaml().read_yaml("school.yaml")
 @allure.feature('学校管理')
 class Test_school(object):
 
-
+    
     @allure.story('学校管理 查询')
     def test_school_management_inquire(self,driver):
         """
