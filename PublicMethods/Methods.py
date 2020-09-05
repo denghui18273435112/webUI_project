@@ -335,11 +335,11 @@ class selenium:
     def new_allure(self,sheet_name=None,case_model=None):
            #allure
         #sheet名称  feature 一级标签
-        allure.dynamic.feature("test")
+        allure.dynamic.feature("test3213")
         #模块   story 二级标签
-        allure.dynamic.story("None")
-        #用例ID+接口名称  title
-        allure.dynamic.title("None")
+        allure.dynamic.story("None123213")
+        #用例名称  title
+        allure.dynamic.title("None321321")
         #请求URL  请求类型 期望结果 实际结果描述
         desc = "<font color='red'>当前执行时间: </font> {}<Br/>" \
                 "<font color='red'>请求URL: </font> {}<Br/>" \
