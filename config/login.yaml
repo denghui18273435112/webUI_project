@@ -15,6 +15,8 @@ test_school_management_add:
 
 test_school_management_inquire:
   inquire_content: "学校22"
+  module_name: "学校管理"
+  test_name: "学校管理查询"
 
 test_school_management_alter:
   school_name: "会同三中"
