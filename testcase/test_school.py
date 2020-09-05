@@ -11,7 +11,7 @@ import pytest
 from PublicMethods.Allure import new_allure
 
 
-login_YAML = ConfigYaml().read_yaml("login.yaml")
+login_YAML = ConfigYaml().read_yaml("school.yaml")
 @pytest.mark.usefixtures("driver")
 @allure.feature('学校管理')
 class Test_school(object):

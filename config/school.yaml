@@ -1,0 +1,21 @@
+---
+test_school_management_add:
+  module_name: "学校管理"
+  test_name: "学校管理添加"
+  school_name: "会同三中"
+  describe: "会同三中描述"
+
+test_school_management_inquire:
+  module_name: "学校管理"
+  test_name: "学校管理查询"
+  inquire_content: "学校22"
+  inquire_field: "学校管理-学校名称"
+
+test_school_management_alter:
+  module_name: "学校管理"
+  test_name: "学校管理查询"
+  school_name: "会同三中"
+  describe: "会同三中描述"
+
+test_school_management_del:
+  module_name: "学校管理"
