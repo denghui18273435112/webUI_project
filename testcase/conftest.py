@@ -27,7 +27,7 @@ def driver():
 
     option = ChromeOptions()
     option.headless =True
-    driver = webdriver.Chrome(options=option)
+    driver = webdriver.Chrome(options=option,executable_path = 'G:\python\selenium\webdriver\chromedriver.exe')
 
     #driver = webdriver.Chrome()
 
