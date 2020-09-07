@@ -9,6 +9,7 @@ from selenium.webdriver.support.ui import Select
 import os
 from win32 import win32gui
 from PublicMethods.WinUpLoadFile import upload_files
+import  allure
 
 
 login_YAML = ConfigYaml().read_yaml("login.yaml")

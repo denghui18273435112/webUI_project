@@ -9,6 +9,8 @@ from selenium import webdriver
 import allure
 import pytest
 from PublicMethods.Allure import new_allure
+import  allure
+
 
 
 login_YAML = ConfigYaml().read_yaml("school.yaml")

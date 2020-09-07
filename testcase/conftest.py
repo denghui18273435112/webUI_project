@@ -10,6 +10,8 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver import  Chrome,ChromeOptions
 from selenium.webdriver import Chrome
 from selenium.webdriver.chrome.options import Options
+import  allure
+
 
 
 @pytest.fixture(scope="session")  #所有的测试文件执行前执行一次
