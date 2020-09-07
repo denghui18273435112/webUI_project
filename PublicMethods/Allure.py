@@ -4,6 +4,7 @@ from PublicMethods.WinUpLoadFile import upload_files
 import allure
 from datetime import datetime
 
+
 def new_allure(self,test_title="test",sheet_name=None,case_model=None):
            #allure
         #sheet名称  feature 一级标签

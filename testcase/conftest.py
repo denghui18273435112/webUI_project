@@ -26,12 +26,13 @@ def driver():
     # opt.add_argument('--headless')                  # 浏览器不提供可视化界面。Linux下如果系统不支持可视化不加这条会启动失败
     # driver = Chrome(options=opt)                    # 创建无界面对象
 
-
     option = ChromeOptions()
     option.headless =True
     driver = webdriver.Chrome(options=option,executable_path = 'G:\python\selenium\webdriver\chromedriver.exe')
 
     #driver = webdriver.Chrome()
+
+
 
     driver.maximize_window()
 
