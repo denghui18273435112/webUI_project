@@ -30,8 +30,7 @@ class Test_school(object):
         selenium(driver).resfresh()
         selenium(driver).FEBCS_CCSKK("div.leftSearch  input",TSMI["inquire_content"])
         selenium(driver).if_list_contrast(inquire_field=TSMI["inquire_field"],contrast=TSMI["inquire_content"])
-        selenium(driver).save_screenshot()
-
+        selenium(driver).save_screenshot(case_Steps_describe="学校管理 查询输入:{}".format(TSMI["inquire_content"]))
 
 
     @allure.story('学校管理 添加')
@@ -48,9 +47,7 @@ class Test_school(object):
         selenium(driver).FEBCS_CCSK("div.el-form-item__content  input",TSMD["school_name"])
         selenium(driver).FEBCS_CCSK("div.el-form-item__content  textarea",TSMD["describe"])
         selenium(driver).FEBXP_C("//span//button[2]")
-        selenium(driver).save_screenshot(add="添加内容:",add1="添加内容:",)
-
-
+        selenium(driver).save_screenshot(case_Steps_describe="学校管理 添加;学校名称:{};学校描述:{}".format(TSMD["school_name"],TSMD["school_name"]))
 
 
     @allure.story('学校管理 修改')
@@ -67,8 +64,7 @@ class Test_school(object):
         selenium(driver).FEBCS_CCSK("div.el-form-item__content  input",TSMA["school_name"])
         selenium(driver).FEBCS_CCSK("div.el-form-item__content  textarea",TSMA["describe"])
         selenium(driver).FEBXP_C("//span//button[2]")
-        selenium(driver).save_screenshot()
-
+        selenium(driver).save_screenshot(case_Steps_describe="学校管理 添加;学校名称:{};学校描述:{}".format(TSMA["school_name"],TSMA["school_name"]))
 
 
     @allure.story('学校管理 删除')
@@ -84,8 +80,6 @@ class Test_school(object):
         selenium(driver).FEBCS_C("div.el-table__fixed-body-wrapper  tr:nth-child(1) > td.el-table_1_column_5 span:nth-child(2)")
         selenium(driver).FEBCS_C("div > button.el-button--primary > span")
         selenium(driver).save_screenshot()
-
-
 
 
 if __name__ == "__main__":
