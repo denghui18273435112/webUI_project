@@ -65,5 +65,5 @@ def driver():
 @pytest.fixture(scope="function")
 def teardown_methond():
 
-        yield
+        #yield
         selenium(driver).save_screenshot("页面截图")

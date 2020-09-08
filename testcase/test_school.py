@@ -20,8 +20,8 @@ login_YAML = ConfigYaml().read_yaml("school.yaml")
 class Test_school(object):
 
 
-    # def teardown_methond(self):
-    #     selenium(driver).new_save_screenshot("页面截图")
+    def teardown_methond(self):
+        selenium(driver).new_save_screenshot("页面截图")
 
     @allure.story('学校管理 查询')
     def test_school_management_inquire(self,driver):
