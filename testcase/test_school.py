@@ -30,7 +30,7 @@ class Test_school(object):
         selenium(driver).resfresh()
         selenium(driver).FEBCS_CCSKK("div.leftSearch  input",TSMI["inquire_content"])
         selenium(driver).if_list_contrast(inquire_field=TSMI["inquire_field"],contrast=TSMI["inquire_content"])
-        selenium(driver).operating_steps(case_Steps_describe="学校管理查询;\n输入的查询内容:{}".format(TSMI["inquire_content"])
+        selenium(driver).operating_steps(case_Steps_describe="学校管理查询<Br/>输入的查询内容:{}".format(TSMI["inquire_content"])
                                          ,name_screenshot="查询成功后的截图")
 
 
@@ -48,7 +48,7 @@ class Test_school(object):
         selenium(driver).FEBCS_CCSK("div.el-form-item__content  input",TSMD["school_name"])
         selenium(driver).FEBCS_CCSK("div.el-form-item__content  textarea",TSMD["describe"])
         selenium(driver).FEBXP_C("//span//button[2]")
-        selenium(driver).operating_steps(case_Steps_describe="学校管理添加;\n添加学校:{};\n学校描述:{};".format(TSMD["school_name"],TSMD["describe"])
+        selenium(driver).operating_steps(case_Steps_describe="学校管理添加<Br/>添加学校:{}<Br/>学校描述:{}".format(TSMD["school_name"],TSMD["describe"])
                                          ,name_screenshot="添加成功后的截图")
 
 
@@ -66,7 +66,7 @@ class Test_school(object):
         selenium(driver).FEBCS_CCSK("div.el-form-item__content  input",TSMA["school_name"])
         selenium(driver).FEBCS_CCSK("div.el-form-item__content  textarea",TSMA["describe"])
         selenium(driver).FEBXP_C("//span//button[2]")
-        selenium(driver).operating_steps(case_Steps_describe="学校管理修改;\n添加学校:{};\n学校描述:{};".format(TSMA["school_name"],TSMA["describe"])
+        selenium(driver).operating_steps(case_Steps_describe="学校管理修改;<Br/>添加学校:{}<Br/>学校描述:{}".format(TSMA["school_name"],TSMA["describe"])
                                          ,name_screenshot="修改成功后的截图")
 
 
@@ -82,5 +82,7 @@ class Test_school(object):
         selenium(driver).resfresh()
         selenium(driver).FEBCS_C("div.el-table__fixed-body-wrapper  tr:nth-child(1) > td.el-table_1_column_5 span:nth-child(2)")
         selenium(driver).FEBCS_C("div > button.el-button--primary > span")
-        selenium(driver).operating_steps(name_screenshot="删除时候的截图")
+        selenium(driver).operating_steps(case_Steps_describe="删除学校管理",
+                                         name_screenshot="删除时候的截图",
+                                         describe="allure  描述")
 

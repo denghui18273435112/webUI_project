@@ -73,27 +73,44 @@ class selenium:
         file_name=get_file_path()+os.sep+filePath
         self.driver.get_screenshot_as_file(file_name)
 
-    def operating_steps(self, case_Steps_describe=None,name_screenshot=None):
-        '''
+    def operating_steps(self, case_Steps_describe=None,name_screenshot=None,describe=None):
+        """
         在allure 报告中添加操作和截图
         编写操作步骤和页面截屏保存截图
-        :param img_doc: 截图说明
-        :return:
-        '''
+        @param case_Steps_describe: 操作步骤的名称
+        @param name_screenshot:截图名称或图片名称
+        @param describe:allure的描述
+        @return:
+        """
+        #allure报告中的描述     allure.dynamic.description  第一个参数就是 描述
+        if describe==None:
+            allure.dynamic.description("<font color='red' style='font-size: 20px;'>暂无描述内容</font><Br/>")
+        else:
+            allure.dynamic.description("<font color='red' style='font-size: 20px;'>{}</font><Br/>".format(describe))
+
+
+        #测试步骤中的操作步骤     allure.attach方法中；第一个参数：测试步骤标题；第二参数：步骤标题内容
+        if case_Steps_describe==None:
+            allure.attach( "<font color='red' style='font-size: 20px;'>操作步骤</font><Br/>","操作步骤",
+                           allure.attachment_type.HTML)
+        else:
+            allure.attach( "<font color='red' style='font-size: 20px;'>{}</font><Br/>".format(case_Steps_describe),"操作步骤",
+                           allure.attachment_type.HTML)
+
+
+        #截图并读取，写入进入allure报告中 file:切图文件的名称;name_screenshot:在allure中显示测试步骤标题; allure.attachment_type.PNG allure步骤的类型
         if name_screenshot==None:
             file_name=get_file_path()+os.sep + "\\{}_{}.png".format(datetime.strftime(datetime.now(), "%Y%m%d%H%M%S"), "截图")
         else:
             file_name=get_file_path()+os.sep + "\\{}_{}.png".format(datetime.strftime(datetime.now(), "%Y%m%d%H%M%S"), name_screenshot)
-
         self.driver.get_screenshot_as_file(file_name)
         with open(file_name, mode='rb') as f:
             file = f.read()
-
-        if case_Steps_describe==None:
-            allure.attach("操作步骤","操作步骤")
-        else:
-            allure.attach(case_Steps_describe,"操作步骤:{}".format(case_Steps_describe))
         allure.attach(file, name_screenshot, allure.attachment_type.PNG)
+
+
+
+
 
 
 
