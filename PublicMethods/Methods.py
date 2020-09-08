@@ -73,21 +73,25 @@ class selenium:
         file_name=get_file_path()+os.sep+filePath
         self.driver.get_screenshot_as_file(file_name)
 
-    def save_screenshot(self, case_Steps_describe=None,img_doc=None):
+    def operating_steps(self, case_Steps_describe=None,img_doc=None):
         '''
-        页面截屏保存截图
+        编写操作步骤和页面截屏保存截图
         :param img_doc: 截图说明
         :return:
         '''
         if img_doc==None:
-            file_name=get_file_path()+os.sep + "\\{}_{}.png".format(datetime.strftime(datetime.now(), "%Y%m%d%H%M%S"), img_doc)
-        else:
             file_name=get_file_path()+os.sep + "\\{}_{}.png".format(datetime.strftime(datetime.now(), "%Y%m%d%H%M%S"), "截图")
+        else:
+            file_name=get_file_path()+os.sep + "\\{}_{}.png".format(datetime.strftime(datetime.now(), "%Y%m%d%H%M%S"), img_doc)
 
         self.driver.get_screenshot_as_file(file_name)
         with open(file_name, mode='rb') as f:
             file = f.read()
-        allure.attach(case_Steps_describe,"操作步骤")
+
+        if case_Steps_describe==None:
+            allure.attach("操作步骤","操作步骤")
+        else:
+            allure.attach(case_Steps_describe,"操作步骤:{}".format(case_Steps_describe))
         allure.attach(file, "图片截图", allure.attachment_type.PNG)
 
 
