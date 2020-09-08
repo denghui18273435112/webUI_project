@@ -10,6 +10,7 @@ import allure
 import pytest
 from PublicMethods.Allure import new_allure
 import  allure
+import os
 
 
 
@@ -77,6 +78,10 @@ class Test_school(object):
         selenium(driver).resfresh()
         selenium(driver).FEBCS_C("div.el-table__fixed-body-wrapper  tr:nth-child(1) > td.el-table_1_column_5 span:nth-child(2)")
         selenium(driver).FEBCS_C("div > button.el-button--primary > span")
+        selenium(driver).save_screenshot("DASDS")
+
+
+
 
 
 if __name__ == "__main__":
