@@ -85,7 +85,7 @@ class selenium:
         with open(file_name, mode='rb') as f:
             file = f.read()
         allure.attach(file, img_doc, allure.attachment_type.PNG)
-        allure.attach(case_Steps_describe)
+        allure.attach(case_Steps_describe,"操作步骤")
 
 
 
