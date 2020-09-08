@@ -77,9 +77,9 @@ class selenium:
         """
         在allure 报告中添加操作和截图
         编写操作步骤和页面截屏保存截图
-        @param case_Steps_describe: 操作步骤的名称
+        @param case_Steps_describe: allure中的操作步骤的名称
         @param name_screenshot:截图名称或图片名称
-        @param describe:allure的描述
+        @param describe:allure中的描述
         @return:
         """
         #allure报告中的描述     allure.dynamic.description  第一个参数就是 描述
