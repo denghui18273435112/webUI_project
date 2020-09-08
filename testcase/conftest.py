@@ -14,7 +14,7 @@ import  allure
 
 
 
-@pytest.fixture(scope="session")  #所有的测试文件执行前执行一次
+@pytest.fixture(scope="session")  #所有的测试文件执行前后执行一次
 def driver():
    #前置-成功登录
     # opt = Options()
@@ -32,10 +32,7 @@ def driver():
 
     #driver = webdriver.Chrome()
 
-
-
     driver.maximize_window()
-
 
     login_YAML = ConfigYaml().read_yaml("login.yaml")
     test_login = login_YAML["test_login"]
@@ -62,3 +59,8 @@ def driver():
    #后置-所有用例执行完关闭浏览器
     driver.close()
     print("\n所有的测试文件执行前执行...结束")
+
+
+#每个方法都执行一次
+def teardown_methond():
+        selenium(driver).save_screenshot("页面截图")
