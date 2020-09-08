@@ -56,15 +56,18 @@ def driver():
             selenium(driver).FEBCS_C("button[class=loginButton]")
             if driver.current_url != test_login["validation_url"]: #判断是否登录成功
                 print(" \n 第一个用例结束:成功登录")
+
                 break
             else:
                 print("\n输入的验证码错误;已再次循环登录")
 
-    print("\n所有的测试文件执行前执行...开始")
+    #print("\n所有的测试文件执行前执行...开始")
+    allure.attach("打开浏览器登录","打开浏览器登录")
     yield driver
 
    #后置-所有用例执行完关闭浏览器
     driver.close()
-    print("\n所有的测试文件执行前执行...结束")
+    #print("\n所有的测试文件执行前执行...结束")
+    allure.attach("所有测试用例执行完","关闭浏览器")
 
 
