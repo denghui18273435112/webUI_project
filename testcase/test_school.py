@@ -20,6 +20,9 @@ login_YAML = ConfigYaml().read_yaml("school.yaml")
 class Test_school(object):
 
 
+    def teardown_methond(self):
+        selenium(driver).save_screenshot()
+
     @allure.story('学校管理 查询')
     def test_school_management_inquire(self,driver):
         """
@@ -78,7 +81,7 @@ class Test_school(object):
         selenium(driver).resfresh()
         selenium(driver).FEBCS_C("div.el-table__fixed-body-wrapper  tr:nth-child(1) > td.el-table_1_column_5 span:nth-child(2)")
         selenium(driver).FEBCS_C("div > button.el-button--primary > span")
-        selenium(driver).save_screenshot("DASDS")
+
 
 
 
