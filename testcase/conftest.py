@@ -62,5 +62,8 @@ def driver():
 
 
 #每个方法都执行一次
+@pytest.fixture(scope=function)
 def teardown_methond():
+    
+        yield
         selenium(driver).save_screenshot("页面截图")
