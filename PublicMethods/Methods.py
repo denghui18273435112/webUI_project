@@ -83,11 +83,12 @@ class selenium:
             file_name=get_file_path()+os.sep + "\\{}_{}.png".format(datetime.strftime(datetime.now(), "%Y%m%d%H%M%S"), img_doc)
         else:
             file_name=get_file_path()+os.sep + "\\{}_{}.png".format(datetime.strftime(datetime.now(), "%Y%m%d%H%M%S"), "截图")
+
         self.driver.get_screenshot_as_file(file_name)
         with open(file_name, mode='rb') as f:
             file = f.read()
         allure.attach(case_Steps_describe,"操作步骤")
-        allure.attach(file, img_doc, allure.attachment_type.PNG)
+        allure.attach(file, "图片截图", allure.attachment_type.PNG)
 
 
 

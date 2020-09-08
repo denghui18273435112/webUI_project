@@ -30,7 +30,10 @@ class Test_school(object):
         selenium(driver).resfresh()
         selenium(driver).FEBCS_CCSKK("div.leftSearch  input",TSMI["inquire_content"])
         selenium(driver).if_list_contrast(inquire_field=TSMI["inquire_field"],contrast=TSMI["inquire_content"])
-        selenium(driver).save_screenshot(case_Steps_describe="学校管理 查询输入:{}".format(TSMI["inquire_content"]))
+
+        desc = "<font color='red' font-size: 18px;>学校管理查询  </font> <Br/>" \
+               "<font color='red' font-size: 18px;>输入内容: </font>{}".format(TSMI["school_name"])
+        selenium(driver).save_screenshot(case_Steps_describe=desc)
 
 
     @allure.story('学校管理 添加')
@@ -47,7 +50,14 @@ class Test_school(object):
         selenium(driver).FEBCS_CCSK("div.el-form-item__content  input",TSMD["school_name"])
         selenium(driver).FEBCS_CCSK("div.el-form-item__content  textarea",TSMD["describe"])
         selenium(driver).FEBXP_C("//span//button[2]")
-        selenium(driver).save_screenshot(case_Steps_describe="学校管理 添加 \n;学校名称:{}\n;学校描述:{}".format(TSMD["school_name"],TSMD["school_name"]))
+
+        desc = "<font color='red' font-size: 18px;>学校管理 添加  </font> <Br/>" \
+               "<font color='red' font-size: 18px;>学校名称: </font> {}<Br/>" \
+               "<font color='red' font-size: 18px;>学校描述: </font>{}".format(TSMD["school_name"],TSMD["school_name"])
+        selenium(driver).save_screenshot(case_Steps_describe=desc)
+
+
+
 
 
     @allure.story('学校管理 修改')
@@ -64,7 +74,11 @@ class Test_school(object):
         selenium(driver).FEBCS_CCSK("div.el-form-item__content  input",TSMA["school_name"])
         selenium(driver).FEBCS_CCSK("div.el-form-item__content  textarea",TSMA["describe"])
         selenium(driver).FEBXP_C("//span//button[2]")
-        selenium(driver).save_screenshot(case_Steps_describe="学校管理 添加\n;学校名称:{}\n;学校描述:{}".format(TSMA["school_name"],TSMA["school_name"]))
+        desc = "<font color='red' font-size: 18px;>学校管理 添加  </font> <Br/>" \
+               "<font color='red' font-size: 18px;>学校名称: </font> {}<Br/>" \
+               "<font color='red' font-size: 18px;>学校描述: </font>{}".format(TSMA["school_name"],TSMA["school_name"])
+        selenium(driver).save_screenshot(case_Steps_describe=desc)
+
 
 
     @allure.story('学校管理 删除')
