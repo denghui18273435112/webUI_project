@@ -21,8 +21,6 @@ import os
 import pytest
 import time
 
-
-
 @pytest.fixture(scope="session")  #所有的测试文件执行前后执行一次
 def driver():
    #前置-成功登录

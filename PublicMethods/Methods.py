@@ -73,7 +73,7 @@ class selenium:
         file_name=get_file_path()+os.sep+filePath
         self.driver.get_screenshot_as_file(file_name)
 
-    def save_screenshot(self, img_doc="截图"):
+    def save_screenshot(self, img_doc="截图",**kwargs):
         '''
         页面截屏保存截图
         :param img_doc: 截图说明
@@ -85,6 +85,7 @@ class selenium:
         with open(file_name, mode='rb') as f:
             file = f.read()
         allure.attach(file, img_doc, allure.attachment_type.PNG)
+        allure.attach(**kwargs)
 
 
 

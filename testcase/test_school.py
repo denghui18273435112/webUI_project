@@ -48,7 +48,8 @@ class Test_school(object):
         selenium(driver).FEBCS_CCSK("div.el-form-item__content  input",TSMD["school_name"])
         selenium(driver).FEBCS_CCSK("div.el-form-item__content  textarea",TSMD["describe"])
         selenium(driver).FEBXP_C("//span//button[2]")
-        selenium(driver).save_screenshot()
+        selenium(driver).save_screenshot(add="添加内容:",add1="添加内容:",)
+
 
 
 
