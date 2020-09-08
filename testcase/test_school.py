@@ -47,7 +47,7 @@ class Test_school(object):
         selenium(driver).FEBCS_CCSK("div.el-form-item__content  input",TSMD["school_name"])
         selenium(driver).FEBCS_CCSK("div.el-form-item__content  textarea",TSMD["describe"])
         selenium(driver).FEBXP_C("//span//button[2]")
-        selenium(driver).save_screenshot(case_Steps_describe="学校管理 添加;学校名称:{};学校描述:{}".format(TSMD["school_name"],TSMD["school_name"]))
+        selenium(driver).save_screenshot(case_Steps_describe="学校管理 添加 \n;学校名称:{}\n;学校描述:{}".format(TSMD["school_name"],TSMD["school_name"]))
 
 
     @allure.story('学校管理 修改')
@@ -64,7 +64,7 @@ class Test_school(object):
         selenium(driver).FEBCS_CCSK("div.el-form-item__content  input",TSMA["school_name"])
         selenium(driver).FEBCS_CCSK("div.el-form-item__content  textarea",TSMA["describe"])
         selenium(driver).FEBXP_C("//span//button[2]")
-        selenium(driver).save_screenshot(case_Steps_describe="学校管理 添加;学校名称:{};学校描述:{}".format(TSMA["school_name"],TSMA["school_name"]))
+        selenium(driver).save_screenshot(case_Steps_describe="学校管理 添加\n;学校名称:{}\n;学校描述:{}".format(TSMA["school_name"],TSMA["school_name"]))
 
 
     @allure.story('学校管理 删除')
