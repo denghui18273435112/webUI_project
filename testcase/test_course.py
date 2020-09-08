@@ -110,10 +110,5 @@ class Test_course(object):
 
 
 
-
-
-
-
-
 if __name__ == "__main__":
      pytest.main(['-s','-r','--verbose','Test_course.py'])

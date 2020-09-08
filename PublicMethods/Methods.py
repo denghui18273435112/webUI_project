@@ -73,32 +73,19 @@ class selenium:
         file_name=get_file_path()+os.sep+filePath
         self.driver.get_screenshot_as_file(file_name)
 
-
-    def save_screenshot(self):
+    def save_screenshot(self, img_doc="截图"):
         '''
         页面截屏保存截图
         :param img_doc: 截图说明
         :return:
         '''
-        file_name=get_file_path()+os.sep + "\\{}.png".format(datetime.strftime(datetime.now(), "%Y%m%d%H%M%S"))
-        self.driver.save_screenshot(file_name)
-        with open(file_name, mode='rb') as f:
-            file = f.read()
-        allure.attach(file, allure.attachment_type.PNG)
-        #case_logger.info("页面截图文件保存在：{}".format(file_name))
-
-    def new_save_screenshot(self, img_doc):
-        '''
-        页面截屏保存截图
-        :param img_doc: 截图说明
-        :return:
-        '''
+        print("截图")
         file_name=get_file_path()+os.sep + "\\{}_{}.png".format(datetime.strftime(datetime.now(), "%Y%m%d%H%M%S"), img_doc)
-        self.driver.save_screenshot(file_name)
+        self.driver.get_screenshot_as_file(file_name)
         with open(file_name, mode='rb') as f:
             file = f.read()
         allure.attach(file, img_doc, allure.attachment_type.PNG)
-        #case_logger.info("页面截图文件保存在：{}".format(file_name))
+
 
 
     def roll(self,location="right",up="500"):

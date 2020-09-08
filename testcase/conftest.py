@@ -11,6 +11,15 @@ from selenium.webdriver import  Chrome,ChromeOptions
 from selenium.webdriver import Chrome
 from selenium.webdriver.chrome.options import Options
 import  allure
+from selenium.webdriver.support.ui import Select
+from PublicMethods.WinUpLoadFile import upload_files
+import allure
+from datetime import datetime
+from config.Conf import get_file_path
+from PublicMethods.WinUpLoadFile import upload_files
+import os
+import pytest
+import time
 
 
 
@@ -61,9 +70,3 @@ def driver():
     print("\n所有的测试文件执行前执行...结束")
 
 
-#每个方法都执行一次
-@pytest.fixture(scope="function")
-def teardown_methond():
-
-        #yield
-        selenium(driver).save_screenshot("页面截图")
