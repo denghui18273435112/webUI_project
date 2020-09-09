@@ -47,19 +47,29 @@ def driver():
     driver.get(test_login["url"])
     driver.implicitly_wait(10)
     while True:
-            selenium(driver).FEBCS_CCSK("input[placeholder=请输入用户名]",test_login["text"])
-            selenium(driver).FEBCS_CCSK("input[placeholder=请输入密码]",test_login["password"])
-            selenium(driver).FEBCS_C("img[alt=验证码图片]")
-            if test_login["url"]==test_login["new_url"]:
-                selenium(driver).FEBCS_CCSK("input[placeholder=请输入验证码]","xicheng")
+
+
+            if test_login["url"] == "http://tp.safetycms.giiatop.com/#/CourseManagement":
+                selenium(driver).FEBCS_CCSK("input[placeholder=请输入用户名]",test_login["new_text"])
+                selenium(driver).FEBCS_CCSK("input[placeholder=请输入密码]",test_login["new_password"])
+                selenium(driver).FEBCS_C("img[alt=验证码图片]")
+                time.sleep(5)
+                selenium(driver).FEBCS_C("button[class=loginButton]")
+
             else:
-                selenium(driver).FEBCS_CCSK("input[placeholder=请输入验证码]",selenium(driver).new_inptu()) #在不是万能验证的时候使用
-            selenium(driver).FEBCS_C("button[class=loginButton]")
-            if driver.current_url != test_login["validation_url"]: #判断是否登录成功
-                print(" \n 第一个用例结束:成功登录")
-                break
-            else:
-                print("\n输入的验证码错误;已再次循环登录")
+                selenium(driver).FEBCS_CCSK("input[placeholder=请输入用户名]",test_login["text"])
+                selenium(driver).FEBCS_CCSK("input[placeholder=请输入密码]",test_login["password"])
+                selenium(driver).FEBCS_C("img[alt=验证码图片]")
+                if test_login["url"]==test_login["new_url"]:
+                    selenium(driver).FEBCS_CCSK("input[placeholder=请输入验证码]","xicheng")
+                else:
+                    selenium(driver).FEBCS_CCSK("input[placeholder=请输入验证码]",selenium(driver).new_inptu()) #在不是万能验证的时候使用
+                selenium(driver).FEBCS_C("button[class=loginButton]")
+                if driver.current_url != test_login["validation_url"]: #判断是否登录成功
+                    print(" \n 第一个用例结束:成功登录")
+                    break
+                else:
+                    print("\n输入的验证码错误;已再次循环登录")
 
     #print("\n所有的测试文件执行前执行...开始")
     allure.attach("打开浏览器登录","打开浏览器登录")

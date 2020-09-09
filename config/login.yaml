@@ -6,8 +6,11 @@ test_login:
   text: "admin"
   password: "admin"
   validation_url: "http://tp.safetycms.huayustech.com"
+  tes: "http://tp.safetycms.giiatop.com/#/CourseManagement  http://192.168.1.202:8117/#/Login"
   new_url: "http://192.168.1.202:8117/#/Login"
   SCHOOL: "moxicheng zzl123"
+  new_password: "admin123"
+  new_text: "admin"
 
 
 
