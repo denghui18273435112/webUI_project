@@ -62,6 +62,28 @@ def get_log_path():
 
 
 class ConfigYaml:
+    def __init__(self):
+        """
+        #读取配置文件
+        #创建类；初始化yaml读取配置文件；
+        self.config return  遍历  get_config_file方法中conf.yaml文件的所有值
+        self.config_all return 遍历   get_config_file方法中conf.yaml文件的所有值
+        self.db_config  return 遍历   get_config_file方法中 db_conf.yaml文件的所有值
+        :return:
+        """
+        self.config = utils.YamlUtil.YamlReaber(get_config_file()).data()
+
+    def get_conf_log_extensiong(self):
+        """
+        :return: 文件的扩展名
+        """
+        return self.config["LOG"]["log_extensiong"]
+
+    def get_conf_log(self):
+        """
+        :return: 日志级别
+        """
+        return self.config["LOG"]["log_level"]
 
     def read_yaml(self,yaml_name,a=None,b=None):
         """
@@ -77,6 +99,19 @@ class ConfigYaml:
             return  self.login[a]
         elif a!=None and b!=None:
             return self.login[a][b]
+
+    def get_email_info(self):
+        """
+        :param  获取eamil的相关信息
+        :return:
+        """
+        return self.config["email"]
+
+    def get_conf_url(self):
+        """
+        :return: url地址
+        """
+        return self.config["test_environment"]["url"]
 
 if __name__ == '__main__':
     #print(ConfigYaml().read_yaml("login.yaml","login"))

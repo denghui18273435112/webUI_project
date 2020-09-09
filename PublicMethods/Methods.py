@@ -110,11 +110,6 @@ class selenium:
 
 
 
-
-
-
-
-
     def roll(self,location="right",up="500"):
         """
         仅限于页面自带的进度条
