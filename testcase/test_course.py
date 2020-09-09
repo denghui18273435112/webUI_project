@@ -13,12 +13,13 @@ import  allure
 
 
 login_YAML = ConfigYaml().read_yaml("login.yaml")
-@pytest.mark.usefixtures("driver")  #不用声明引入conftest.py中的driver方法
+#@pytest.mark.usefixtures("driver")  #不用声明引入conftest.py中的driver方法
 @allure.feature('课程管理')
 class Test_course(object):
 
-     #@pytest.mark.skip   #遇到pytest.mark.skip声明的方法一直跳过
     @allure.story('课程添加')
+    @pytest.mark.skip   #遇到pytest.mark.skip声明的方法一直跳过
+
     def test_Course_center_add(self,driver):
         """
         添加课程数据
@@ -102,12 +103,25 @@ class Test_course(object):
             selenium(driver).upload_photo(" div:nth-child(2) > div > div > i")
             driver.find_elements_by_css_selector("div button.confirmButton span")[4].click()
         selenium(driver).FEBXP_C(button_name="提交")
-
-
         print("\n 第一个用例结束:添加课程")
 
-
-
+    @allure.story('课程查询')
+    def test_Course_center_inquire(self,driver):
+        """
+        课程列表查询
+        @param driver:
+        @return:
+        """
+        selenium(driver).location_name("配课中心")
+        selenium(driver).location_name("课程管理")
+        selenium(driver).FEBCS_pull_down_choose("input[placeholder=请选择所属学校]","菜鸟大专")
+        selenium(driver).FEBCS_CCSKK("input[placeholder=请输入名称回车查询]","练成")
+        selenium(driver).FEBCS_CCSK("input[placeholder=开始日期]","2020-08-04")
+        selenium(driver).FEBCS_CCSK("input[placeholder=结束日期]","2020-08-04")
+        selenium(driver).FEBXP_C(button_name="查询")
+        selenium(driver).operating_steps(
+                                         name_screenshot="查询成功后的截图",
+                                         describe="  课程列表查询 ")
 
 
 if __name__ == "__main__":

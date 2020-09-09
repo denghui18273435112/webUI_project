@@ -33,11 +33,12 @@ def driver():
     # opt.add_argument('--headless')                  # 浏览器不提供可视化界面。Linux下如果系统不支持可视化不加这条会启动失败
     # driver = Chrome(options=opt)                    # 创建无界面对象
 
-    option = ChromeOptions()
-    option.headless =True
-    driver = webdriver.Chrome(options=option,executable_path = 'G:\python\selenium\webdriver\chromedriver.exe')
+    # option = ChromeOptions()
+    # option.headless =True
+    # option.add_argument('window-size=1920x1080')
+    # driver = webdriver.Chrome(options=option,executable_path = 'G:\python\selenium\webdriver\chromedriver.exe')
 
-    #driver = webdriver.Chrome()
+    driver = webdriver.Chrome()
 
     driver.maximize_window()
 
@@ -56,7 +57,6 @@ def driver():
             selenium(driver).FEBCS_C("button[class=loginButton]")
             if driver.current_url != test_login["validation_url"]: #判断是否登录成功
                 print(" \n 第一个用例结束:成功登录")
-
                 break
             else:
                 print("\n输入的验证码错误;已再次循环登录")

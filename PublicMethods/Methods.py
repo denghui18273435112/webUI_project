@@ -290,6 +290,17 @@ class selenium:
         self.driver.implicitly_wait(10)
         time.sleep(1)
 
+    def FESBCS_C(self,location,weizhi):
+        """
+        定位-点击-隐性等待10S  复数
+        find_element_by_css_selector 缩写FEBCS
+        :param location: 定位
+        :return:
+        """
+        self.driver.find_elements_by_css_selector(location)[weizhi].click()
+        self.driver.implicitly_wait(10)
+        time.sleep(1)
+
     def FEBXP_C(self,location=None,button_name=None):
         """
         定位-点击-隐性等待10S
@@ -319,20 +330,25 @@ class selenium:
         time.sleep(0.5)
         self.driver.implicitly_wait(10)
 
-
-
-    def positioning_module_get(self,name):
+    def module_skip(self,name):
         """
-        通过模块名称进行get跳转
+        通过模块名称进行模块跳转
+        刷新页面
         @param name: 模块名称
         @return:
         """
-        login = ConfigYaml().read_yaml("login.yaml","login")
+        login = ConfigYaml().read_yaml("login.yaml","test_login")
         if name == "学校管理":
             self.driver.get(login["url_ip"]+"SchoolManagement")
         if name == "课程管理":
-            url=login["url_ip"]+"CourseManagement"
-            self.driver.get(url)
+            self.driver.get(login["url_ip"]+"CourseManagement")
+        if name =="题库管理":
+            self.driver.get(login["url_ip"]+"QuestionBankManagement")
+        if name =="推送记录":
+            self.driver.get(login["url_ip"]+"PushRecords")
+        self.driver.refresh()
+        time.sleep(0.5)
+        self.driver.implicitly_wait(10)
 
 
     def location_name(self,name):
@@ -341,6 +357,10 @@ class selenium:
         @param name: 模块名称
         @return:
         """
+        if name =="考试管理":
+            selenium(self.driver).FEBCS_C("span:nth-child(4)  span:nth-child(2)")
+        if name =="题库管理":
+            selenium(self.driver).FEBCS_C("#app > div > div.contentWrapper > span > div > ul > span:nth-child(4) > li > ul > li.el-menu-item.is-active > span")
         if name == "配课中心":
             selenium(self.driver).FEBCS_C("span:nth-child(3)  span:nth-child(2)")
         if name == "学校管理":

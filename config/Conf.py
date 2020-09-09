@@ -95,7 +95,7 @@ class ConfigYaml:
         self.login = utils.YamlUtil.YamlReaber(Yaml_document_location(yaml_name)).data()
         if a==None and b==None:
             return  self.login
-        elif b==None:
+        elif a!= None and b==None:
             return  self.login[a]
         elif a!=None and b!=None:
             return self.login[a][b]
