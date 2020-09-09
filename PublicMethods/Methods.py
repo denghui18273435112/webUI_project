@@ -333,7 +333,7 @@ class selenium:
     def module_skip(self,name):
         """
         通过模块名称进行模块跳转
-        刷新页面
+        刷新页面 等待一会
         @param name: 模块名称
         @return:
         """
