@@ -33,12 +33,12 @@ def driver():
     # opt.add_argument('--headless')                  # 浏览器不提供可视化界面。Linux下如果系统不支持可视化不加这条会启动失败
     # driver = Chrome(options=opt)                    # 创建无界面对象
 
-    option = ChromeOptions()
-    option.headless =True
-    option.add_argument('window-size=1920x1080')
-    driver = webdriver.Chrome(options=option,executable_path = 'G:\python\selenium\webdriver\chromedriver.exe')
+    # option = ChromeOptions()
+    # option.headless =True
+    # option.add_argument('window-size=1920x1080')
+    # driver = webdriver.Chrome(options=option,executable_path = 'G:\python\selenium\webdriver\chromedriver.exe')
 
-    #driver = webdriver.Chrome()
+    driver = webdriver.Chrome()
 
     driver.maximize_window()
 
@@ -50,21 +50,18 @@ def driver():
 
 
             if test_login["url"] == "http://tp.safetycms.giiatop.com/#/CourseManagement":
-                selenium(driver).FEBCS_CCSK("input[placeholder=请输入用户名]",test_login["new_text"])
-                selenium(driver).FEBCS_CCSK("input[placeholder=请输入密码]",test_login["new_password"])
-                selenium(driver).FEBCS_C("img[alt=验证码图片]")
+                selenium(driver).text_input("input[placeholder=请输入用户名]",test_login["new_text"])
+                selenium(driver).text_input("input[placeholder=请输入密码]",test_login["new_password"])
+                selenium(driver).click_new("img[alt=验证码图片]")
                 time.sleep(5)
-                selenium(driver).FEBCS_C("button[class=loginButton]")
+                selenium(driver).click_new("button[class=loginButton]")
 
             else:
-                selenium(driver).FEBCS_CCSK("input[placeholder=请输入用户名]",test_login["text"])
-                selenium(driver).FEBCS_CCSK("input[placeholder=请输入密码]",test_login["password"])
-                selenium(driver).FEBCS_C("img[alt=验证码图片]")
-                if test_login["url"]==test_login["new_url"]:
-                    selenium(driver).FEBCS_CCSK("input[placeholder=请输入验证码]","xicheng")
-                else:
-                    selenium(driver).FEBCS_CCSK("input[placeholder=请输入验证码]",selenium(driver).new_inptu()) #在不是万能验证的时候使用
-                selenium(driver).FEBCS_C("button[class=loginButton]")
+                selenium(driver).text_input("input[placeholder=请输入用户名]",test_login["text"])
+                selenium(driver).text_input("input[placeholder=请输入密码]",test_login["password"])
+                selenium(driver).click_new(location="img[alt=验证码图片]")
+                selenium(driver).text_input("input[placeholder=请输入验证码]","xicheng")
+                selenium(driver).click_new(location="button[class=loginButton]")
                 if driver.current_url != test_login["validation_url"]: #判断是否登录成功
                     print(" \n 第一个用例结束:成功登录")
                     break

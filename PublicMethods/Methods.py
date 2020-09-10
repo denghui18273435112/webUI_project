@@ -13,7 +13,7 @@ from config.Conf import get_file_path
 from PublicMethods.WinUpLoadFile import upload_files
 import os
 
-
+@pytest.mark.usefixtures("driver")
 class selenium:
     def __init__(self,driver):
         """
@@ -21,6 +21,7 @@ class selenium:
         :param driver:
         """
         self.driver=driver
+        print(self.driver)
 
     def back(self):
         """
@@ -88,7 +89,6 @@ class selenium:
         else:
             allure.dynamic.description("<font color='red' style='font-size: 20px;'>{}</font><Br/>".format(describe))
 
-
         #测试步骤中的操作步骤     allure.attach方法中；第一个参数：测试步骤标题；第二参数：步骤标题内容
         if case_Steps_describe==None:
             allure.attach( "<font color='red' style='font-size: 20px;'>操作步骤</font><Br/>","操作步骤",
@@ -96,7 +96,6 @@ class selenium:
         else:
             allure.attach( "<font color='red' style='font-size: 20px;'>{}</font><Br/>".format(case_Steps_describe),"操作步骤",
                            allure.attachment_type.HTML)
-
 
         #截图并读取，写入进入allure报告中 file:切图文件的名称;name_screenshot:在allure中显示测试步骤标题; allure.attachment_type.PNG allure步骤的类型
         if name_screenshot==None:
@@ -109,7 +108,6 @@ class selenium:
         allure.attach(file, name_screenshot, allure.attachment_type.PNG)
 
 
-
     def roll(self,location="right",up="500"):
         """
         仅限于页面自带的进度条
@@ -118,6 +116,7 @@ class selenium:
         """
         self.driver.execute_script( 'document.getElementsByClassName("{}")[0].scrollTop={}'.format(location,up))
         time.sleep(0.5)
+
 
     def editor_upload_photo(self,location1="i.w-e-icon-image",location2="i.w-e-icon-upload2",photo="banner.png"):
         """
@@ -147,78 +146,6 @@ class selenium:
         upload_files(photo)
         time.sleep(0.5)
 
-
-
-    def FEBCS_CCSK(self,location,content):
-        """
-        定位-点击-清空-输入-隐性等待10S
-        find_element_by_css_selector 缩写FEBCS
-        :param location: 定位
-        :param content: 输入内容
-        :return:
-        """
-        self.driver.find_element_by_css_selector(location).click()
-        self.driver.find_element_by_css_selector(location).clear()
-        self.driver.find_element_by_css_selector(location).send_keys(content)
-        self.driver.implicitly_wait(10)
-        time.sleep(0.5)
-
-    def FEBCS_new_CCSK(self,location,content):
-        """
-        定位-点击-清空-输入-隐性等待10S
-        find_element_by_css_selector 缩写FEBCS
-        :param location: 定位
-        :param content: 输入内容
-        :return:
-        """
-        new_driver = self.driver.find_element_by_css_selector(location)
-        new_driver.click()
-        print("点击")
-        new_driver.send_keys(content)
-        self.driver.implicitly_wait(10)
-        time.sleep(0.5)
-
-    def FEBXP_CCSK(self,location,content):
-        """
-        定位-点击-清空-输入-隐性等待10S
-        find_element_by_css_xpath 缩写FEBXP
-        :param location: 定位
-        :param content: 输入内容
-        :return:
-        """
-        self.driver.find_element_by_xpath(location).click()
-        self.driver.find_element_by_xpath(location).clear()
-        self.driver.find_element_by_xpath(location).send_keys(content)
-        self.driver.implicitly_wait(10)
-        time.sleep(0.5)
-
-    def FEBCS_CVT(self,location,content):
-        """
-        定位-点击-下拉选择-隐性等待10S
-        find_element_by_css_selector 缩写FEBCS
-        :param location: 定位
-        :param content: 输入内容
-        :return:
-        """
-        self.driver.find_element_by_css_selector(location).click()
-        Select(self.driver.find_element_by_css_selector(location)).select_by_index(content)
-        self.driver.implicitly_wait(10)
-        time.sleep(0.5)
-
-    def FEBXP_CVT(self,location,content):
-        """
-        定位-点击-下拉选择-隐性等待10S
-        find_element_by_css_selector 缩写FEBCS
-        :param location: 定位
-        :param content: 输入内容
-        :return:
-        """
-        self.driver.find_element_by_xpath(location).click()
-        Select(self.driver.find_element_by_xpath(location)).select_by_visible_text(content)
-        self.driver.implicitly_wait(10)
-        time.sleep(0.5)
-
-
     def FEBCS_CCSKK(self,location,content):
         """
         定位-点击-清空-输入-隐性等待10S-回车
@@ -235,105 +162,80 @@ class selenium:
         time.sleep(0.5)
 
 
-    def FEBXP_CCSKK(self,location,content):
+    def text_input(self,location,content):
         """
-        定位-点击-清空-输入-隐性等待10S-回车
-        find_element_by_css_xpath 缩写FEBCXP
+        文本输入
         :param location: 定位
-        :param content: 输入内容
+        :param content: 文本输入内容
         :return:
         """
-        self.driver.find_element_by_xpath(location).click()
-        self.driver.find_element_by_xpath(location).clear()
-        self.driver.find_element_by_xpath(location).send_keys(content)
-        self.driver.find_element_by_xpath(location).send_keys(Keys.ENTER)
-        self.driver.implicitly_wait(10)
-        time.sleep(0.5)
-
-
-    def FEBCS_CCK(self,location):
-        """
-        定位-点击-清空-回车-隐性等待10S
-        find_element_by_css_selector 缩写FEBCS
-        :param location: 定位
-        :return:
-        """
+        # if '\u4e00' <= location <= '\u9fff':
+        #     new_location = "input[placeholder={}]".format(location)
+        #     print(new_location)
+        #     self.driver.find_element_by_css_selector(new_location).click()
         self.driver.find_element_by_css_selector(location).click()
         self.driver.find_element_by_css_selector(location).clear()
-        self.driver.find_element_by_css_selector(location).send_keys(Keys.ENTER)
+        self.driver.find_element_by_css_selector(location).send_keys(content)
         self.driver.implicitly_wait(10)
         time.sleep(0.5)
 
 
-    def FEBXP_CCK(self,location):
+    def click_new(self, location):
         """
-        定位-点击-清空-回车-隐性等待10S
-        find_element_by_css_xpath 缩写FEBP
+        常规点击
         :param location: 定位
         :return:
         """
-        self.driver.find_element_by_xpath(location).click()
-        self.driver.find_element_by_xpath(location).clear()
-        self.driver.find_element_by_xpath(location).send_keys(Keys.ENTER)
+        if "/" in location or "//" in location:
+           self.driver.find_element_by_xpath(location).click()
+        else:
+            self.driver.find_element_by_css_selector(location).click()
+
+
+
+    def button_click(self,location,weizhi=None):
+        """
+        按钮点击
+        支持1 按钮名称
+        支持2 css定位
+        :return:
+        """
+        if '\u4e00' <= location <= '\u9fff':
+            self.driver.find_element_by_xpath("//span[contains(text(),{0})]".format(location)).click()
+        else:
+            if weizhi != None:
+                 print(1)
+                 self.driver.find_elements_by_css_selector(location)[weizhi].click()
+            elif ">" in location:
+                print(2)
+                self.driver.find_element_by_css_selector(location).click()
+            if "/" in location:
+                print(3)
+                self.driver.find_element_by_xpath(location).click()
         self.driver.implicitly_wait(10)
         time.sleep(0.5)
 
 
-    def FEBCS_C(self,location):
+    def pull_down_choose(self, location, option_name):
         """
-        定位-点击-隐性等待10S
-        find_element_by_css_selector 缩写FEBCS
-        :param location: 定位
-        :return:
-        """
-        self.driver.find_element_by_css_selector(location).click()
-        self.driver.implicitly_wait(10)
-        time.sleep(1)
-
-    def FESBCS_C(self,location,weizhi):
-        """
-        定位-点击-隐性等待10S  复数
-        find_element_by_css_selector 缩写FEBCS
-        :param location: 定位
-        :return:
-        """
-        self.driver.find_elements_by_css_selector(location)[weizhi].click()
-        self.driver.implicitly_wait(10)
-        time.sleep(1)
-
-    def FEBXP_C(self,location=None,button_name=None):
-        """
-        定位-点击-隐性等待10S
-        find_element_by_css_xpath 缩写FEBXP
-        :param location: 定位
-        :button_name: 按钮的名称
-        :return:
-        """
-        if button_name != None:
-            self.driver.find_element_by_xpath("//span[contains(text(),\"{0}\")]".format(button_name)).click()
-        if location != None:
-            self.driver.find_element_by_xpath(location).click()
-        self.driver.implicitly_wait(10)
-        time.sleep(0.5)
-
-
-    def FEBCS_pull_down_choose(self,location,option_name):
-        """
-            点击弹出下拉-选择下拉选项
-           @param location:  定位下拉文本框位置
-           @param option_name: 下拉选项名称
-           @return:
+        下拉选择
+        @param location:  定位下拉文本框位置
+        @param option_name: 下拉选项名称
+        @return:
        """
-        self.driver.find_element_by_css_selector(location).click()
+        if ">" in location:
+                self.driver.find_element_by_css_selector(location).click()
+        if "/" in location:
+                self.driver.find_element_by_xpath(location).click()
         time.sleep(0.5)
         self.driver.find_element_by_xpath('//span[contains(text(),"{0}")]'.format(option_name)).click()
         time.sleep(0.5)
         self.driver.implicitly_wait(10)
 
+
     def module_skip(self,name):
         """
-        通过模块名称进行模块跳转
-        刷新页面 等待一会
+        模块跳转
         @param name: 模块名称
         @return:
         """
@@ -346,7 +248,8 @@ class selenium:
             self.driver.get(login["url_ip"]+"QuestionBankManagement")
         if name =="推送记录":
             self.driver.get(login["url_ip"]+"PushRecords")
-        self.driver.refresh()
+        if name =="试卷管理":
+            self.driver.get(login["url_ip"]+"TestPaperManagement")
         time.sleep(0.5)
         self.driver.implicitly_wait(10)
 
@@ -358,19 +261,19 @@ class selenium:
         @return:
         """
         if name =="考试管理":
-            selenium(self.driver).FEBCS_C("span:nth-child(4)  span:nth-child(2)")
+            selenium(self.driver).click_new("span:nth-child(4)  span:nth-child(2)")
         if name =="题库管理":
-            selenium(self.driver).FEBCS_C("#app > div > div.contentWrapper > span > div > ul > span:nth-child(4) > li > ul > li.el-menu-item.is-active > span")
+            selenium(self.driver).click_new("#app > div > div.contentWrapper > span > div > ul > span:nth-child(4) > li > ul > li.el-menu-item.is-active > span")
         if name == "配课中心":
-            selenium(self.driver).FEBCS_C("span:nth-child(3)  span:nth-child(2)")
+            selenium(self.driver).click_new("span:nth-child(3)  span:nth-child(2)")
         if name == "学校管理":
-            selenium(self.driver).FEBCS_C("span:nth-child(9) span:nth-child(1)")
+            selenium(self.driver).click_new("span:nth-child(9) span:nth-child(1)")
         if name == "课程管理":
-            selenium(self.driver).FEBCS_C("#app > div > div.contentWrapper > span > div > ul > span:nth-child(3) > li > ul > li:nth-child(2) > span")
+            selenium(self.driver).click_new("#app > div > div.contentWrapper > span > div > ul > span:nth-child(3) > li > ul > li:nth-child(2) > span")
         if name == "配课中心2":
-            selenium(self.driver).FEBCS_C("#app > div > div.contentWrapper > span > div > ul > span:nth-child(3) > li > div > span:nth-child(2)")
+            selenium(self.driver).click_new("#app > div > div.contentWrapper > span > div > ul > span:nth-child(3) > li > div > span:nth-child(2)")
         if name == "配课中心3":
-            selenium(self.driver).FEBCS_C("#app > div > div.contentWrapper > span > div > ul > span:nth-child(3) > li > div > span:nth-child(2)")
+            selenium(self.driver).click_new("#app > div > div.contentWrapper > span > div > ul > span:nth-child(3) > li > div > span:nth-child(2)")
         time.sleep(0.5)
 
 
@@ -384,7 +287,6 @@ class selenium:
         """
         if  inquire_field=="学校管理-学校名称":
             location="#app > div > div.contentWrapper > div > div > div.zzlCover.zzlCoverMH > div.zzlTableList.zzlTableListMaxH > div.el-table.el-table--fit.el-table--scrollable-x.el-table--enable-row-transition > div.el-table__body-wrapper.is-scrolling-left > table > tbody > tr > td.el-table_1_column_1.is-center > div.cell.el-tooltip"
-
         list = self.driver.find_elements_by_css_selector(location)
 
         print(list)

@@ -35,7 +35,7 @@ class Request:
 		res["body"] = body
 		return res
 
-	def get(self,url,**kwargs):
+	def new_get(self,url,**kwargs):
 		"""
 		:param url:  接口地址
 		:param kwargs: 不定参数: *args和**kwargs 可以接受任意长度和格式的参数；两个参数不能同时传，一次只能传一个
