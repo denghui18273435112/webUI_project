@@ -1,4 +1,3 @@
-# coding=utf-8
 from selenium.webdriver.common.keys import Keys
 from config.Conf import ConfigYaml
 from selenium.webdriver.support.select import Select
@@ -162,6 +161,8 @@ class selenium:
         time.sleep(0.5)
 
 
+
+
     def text_input(self,location,content):
         """
         文本输入
@@ -169,10 +170,11 @@ class selenium:
         :param content: 文本输入内容
         :return:
         """
-        # if '\u4e00' <= location <= '\u9fff':
-        #     new_location = "input[placeholder={}]".format(location)
-        #     print(new_location)
-        #     self.driver.find_element_by_css_selector(new_location).click()
+        if '\u4e00' <= location <= '\u9fff':
+            new_location = "input[placeholder={}]".format(location)
+            print(new_location)
+            self.driver.find_element_by_css_selector(new_location).click()
+        print("打印location"+location)
         self.driver.find_element_by_css_selector(location).click()
         self.driver.find_element_by_css_selector(location).clear()
         self.driver.find_element_by_css_selector(location).send_keys(content)
