@@ -53,7 +53,7 @@ def driver():
                 selenium(driver).text_input("input[placeholder=请输入用户名]",test_login["new_text"])
                 selenium(driver).text_input("input[placeholder=请输入密码]",test_login["new_password"])
                 selenium(driver).click_new("img[alt=验证码图片]")
-                time.sleep(5)
+                time.sleep(10)
                 selenium(driver).click_new("button[class=loginButton]")
 
             else:
@@ -62,12 +62,7 @@ def driver():
                 selenium(driver).click_new(location="img[alt=验证码图片]")
                 selenium(driver).text_input("input[placeholder=请输入验证码]","xicheng")
                 selenium(driver).click_new(location="button[class=loginButton]")
-                print("完成")
-                if driver.current_url != test_login["validation_url"]: #判断是否登录成功
-                    print(" \n 第一个用例结束:成功登录")
-                    break
-                else:
-                    print("\n输入的验证码错误;已再次循环登录")
+
 
     #print("\n所有的测试文件执行前执行...开始")
     #allure.attach("打开浏览器登录","打开浏览器登录")
