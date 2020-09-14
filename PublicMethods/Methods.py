@@ -12,8 +12,8 @@ from config.Conf import get_file_path
 from PublicMethods.WinUpLoadFile import upload_files
 import os
 
-@pytest.mark.usefixtures("driver")
-class selenium:
+#@pytest.mark.usefixtures("driver")
+class selenium(object):
     def __init__(self,driver):
         """
         写一个构造函数，有一个参数driver
@@ -161,25 +161,21 @@ class selenium:
         time.sleep(0.5)
 
 
-
-
     def text_input(self,location,content):
-        """
-        文本输入
-        :param location: 定位
-        :param content: 文本输入内容
-        :return:
-        """
+        # """
+        # 文本输入
+        # :param location: 定位
+        # :param content: 文本输入内容  //*[contains(text(),'{}')]
+        # :return:
+        # """
         if '\u4e00' <= location <= '\u9fff':
-            new_location = "input[placeholder={}]".format(location)
-            print(new_location)
-            self.driver.find_element_by_css_selector(new_location).click()
-        print("打印location"+location)
-        self.driver.find_element_by_css_selector(location).click()
+            self.driver.find_element_by_css_selector("input[placeholder=\"{0}\"]".format(location)).click()
+
+        if ">" in location:
+            self.driver.find_element_by_css_selector(location).click()
         self.driver.find_element_by_css_selector(location).clear()
         self.driver.find_element_by_css_selector(location).send_keys(content)
         self.driver.implicitly_wait(10)
-        time.sleep(0.5)
 
 
     def click_new(self, location):
@@ -190,30 +186,35 @@ class selenium:
         """
         if "/" in location or "//" in location:
            self.driver.find_element_by_xpath(location).click()
+        elif  '\u4e00' <= location <= '\u9fff':
+             self.driver.find_element_by_xpath("//*[contains(text(),'{}')]".format(location)).click()
         else:
             self.driver.find_element_by_css_selector(location).click()
+        self.driver.implicitly_wait(10)
+        time.sleep(0.5)
 
 
 
     def button_click(self,location,weizhi=None):
         """
-        按钮点击
-        支持1 按钮名称
-        支持2 css定位
-        :return:
+        按钮点击；支持复数定位点击
+        @param location:
+        @param weizhi:
+        @return:
         """
-        if '\u4e00' <= location <= '\u9fff':
-            self.driver.find_element_by_xpath("//span[contains(text(),{0})]".format(location)).click()
-        else:
-            if weizhi != None:
-                 print(1)
-                 self.driver.find_elements_by_css_selector(location)[weizhi].click()
-            elif ">" in location:
-                print(2)
-                self.driver.find_element_by_css_selector(location).click()
-            if "/" in location:
-                print(3)
-                self.driver.find_element_by_xpath(location).click()
+        if ">" in location and weizhi != None :
+            self.driver.find_elements_by_css_selector(location)[int(weizhi)].click()
+        elif ">" in location and weizhi == None :
+            self.driver.find_element_by_css_selector(location).click()
+
+        elif "/" in location  and weizhi != None :
+            self.driver.find_element_by_xpath(location)[int(weizhi)].click()
+        elif "/" in location  and weizhi == None :
+            self.driver.find_element_by_xpath(location).click()
+        elif '\u4e00' <= location <= '\u9fff' and weizhi != None:
+            self.driver.find_elements_by_xpath("//*[contains(text(),'{}')]".format(location))[int(weizhi)].click()
+        elif '\u4e00' <= location <= '\u9fff' and weizhi == None:
+            self.driver.find_element_by_xpath("//*[contains(text(),'{}')]".format(location)).click()
         self.driver.implicitly_wait(10)
         time.sleep(0.5)
 
@@ -225,7 +226,9 @@ class selenium:
         @param option_name: 下拉选项名称
         @return:
        """
-        if ">" in location:
+        if '\u4e00' <= location <= '\u9fff':
+                self.driver.find_element_by_css_selector("input[placeholder={}]".format(location)).click()
+        if ">" in location or "=" in location:
                 self.driver.find_element_by_css_selector(location).click()
         if "/" in location:
                 self.driver.find_element_by_xpath(location).click()
@@ -235,9 +238,9 @@ class selenium:
         self.driver.implicitly_wait(10)
 
 
-    def module_skip(self,name):
+    def url_skip(self, name):
         """
-        模块跳转
+        url跳转
         @param name: 模块名称
         @return:
         """
@@ -252,13 +255,15 @@ class selenium:
             self.driver.get(login["url_ip"]+"PushRecords")
         if name =="试卷管理":
             self.driver.get(login["url_ip"]+"TestPaperManagement")
-        time.sleep(0.5)
+        if name =="试卷管理":
+            self.driver.get(login["url_ip"]+"TestPaperManagement")
+        time.sleep(2)
         self.driver.implicitly_wait(10)
 
 
-    def location_name(self,name):
+    def module_skip(self, name):
         """
-        通过模块名称进行定位点击
+        模块名称跳转
         @param name: 模块名称
         @return:
         """
@@ -276,7 +281,7 @@ class selenium:
             selenium(self.driver).click_new("#app > div > div.contentWrapper > span > div > ul > span:nth-child(3) > li > div > span:nth-child(2)")
         if name == "配课中心3":
             selenium(self.driver).click_new("#app > div > div.contentWrapper > span > div > ul > span:nth-child(3) > li > div > span:nth-child(2)")
-        time.sleep(0.5)
+        time.sleep(2)
 
 
 

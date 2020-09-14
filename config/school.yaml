@@ -8,7 +8,7 @@ test_school_management_add:
 test_school_management_inquire:
   module_name: "学校管理"
   test_name: "学校管理查询"
-  inquire_content: "学校22"
+  inquire_content: "三"
   inquire_field: "学校管理-学校名称"
 
 test_school_management_alter:

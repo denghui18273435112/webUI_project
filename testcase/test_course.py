@@ -16,44 +16,42 @@ login_YAML = ConfigYaml().read_yaml("login.yaml")
 #@pytest.mark.usefixtures("driver")  #不用声明引入conftest.py中的driver方法
 @allure.feature('课程管理')
 class Test_course(object):
-
+    @pytest.mark.run(order=1)
     @allure.story('课程添加')
-    @pytest.mark.skip   #遇到pytest.mark.skip声明的方法一直跳过
-
     def test_Course_center_add(self,driver):
         """
         添加课程数据
         @param driver:
         @return:
         """
-        selenium(driver).location_name("配课中心")
-        selenium(driver).location_name("课程管理")
-        selenium(driver).click_new("div.rightSearch  button.el-button > span")
+        selenium(driver).module_skip("配课中心")
+        selenium(driver).module_skip("课程管理")
+        selenium(driver).button_click("div.rightSearch  button.el-button > span")
 
         #课程信息
-        selenium(driver).FEBCS_CCSK("div:nth-child(2)    input[placeholder=请输入课程标题]","学校22")
-        selenium(driver).pull_down_choose(" input[placeholder=请选择课程类型]", "必修")
-        selenium(driver).FEBCS_CCSK("div.contentWrapperOne  div:nth-child(4)  input","10")
-        selenium(driver).FEBCS_CCSK("div:nth-child(5)  input.el-input__inner","标签")
+        selenium(driver).text_input("div:nth-child(2)    input[placeholder=请输入课程标题]","学校22")
+        selenium(driver).pull_down_choose("input[placeholder=请选择课程类型]", "必修")
+        selenium(driver).text_input("div.contentWrapperOne  div:nth-child(4)  input","10")
+        selenium(driver).text_input("div:nth-child(5)  input.el-input__inner","标签")
 
         #设计课程目标
-        selenium(driver).FEBCS_CCSK("div:nth-child(7)  div:nth-child(1) > div > div > input","4")
-        selenium(driver).FEBCS_CCSK("div:nth-child(7)  div:nth-child(2) > div > div > input","20")
-        selenium(driver).FEBCS_CCSK("div:nth-child(8)  div:nth-child(1) > div > div > input","4")
-        selenium(driver).FEBCS_CCSK("div:nth-child(8)  div:nth-child(2) > div > div > input","20")
-        selenium(driver).FEBCS_CCSK("div:nth-child(9)  div:nth-child(1) > div > div > input","4")
-        selenium(driver).FEBCS_CCSK("div:nth-child(9)  div:nth-child(2) > div > div > input","20")
-        selenium(driver).FEBCS_CCSK("div:nth-child(10)  div:nth-child(1) > div > div > input","40")
-        selenium(driver).FEBCS_CCSK(" input[placeholder=选择日期]","2020-09-03")
+        selenium(driver).text_input("div:nth-child(7)  div:nth-child(1) > div > div > input","4")
+        selenium(driver).text_input("div:nth-child(7)  div:nth-child(2) > div > div > input","20")
+        selenium(driver).text_input("div:nth-child(8)  div:nth-child(1) > div > div > input","4")
+        selenium(driver).text_input("div:nth-child(8)  div:nth-child(2) > div > div > input","20")
+        selenium(driver).text_input("div:nth-child(9)  div:nth-child(1) > div > div > input","4")
+        selenium(driver).text_input("div:nth-child(9)  div:nth-child(2) > div > div > input","20")
+        selenium(driver).text_input("div:nth-child(10)  div:nth-child(1) > div > div > input","40")
+        selenium(driver).text_input(" input[placeholder=选择日期]","2020-09-03")
         selenium(driver).pull_down_choose("input[placeholder=请选择试卷]", "课程试卷")
         selenium(driver).click_new("div:nth-child(13)  label:nth-child(1) > span > span")
         selenium(driver).click_new("div:nth-child(14)  label:nth-child(2) > span> span")
 
         #设置相关图片
-        selenium(driver).FEBXP_C(button_name="上传封面")
+        selenium(driver).button_click("上传封面")
         upload_files("banner.png")
         time.sleep(1)
-        selenium(driver).FEBXP_C(button_name="上传banner图")
+        selenium(driver).button_click("上传banner图")
         upload_files("banner.png")
         time.sleep(1)
 
@@ -69,7 +67,7 @@ class Test_course(object):
             time.sleep(1)
             selenium(driver).click_new("div.left span:nth-child(1) svg")
             time.sleep(0.5)
-            selenium(driver).FEBCS_CCSK("input[placeholder=请输入章的名称]",x)
+            selenium(driver).text_input("input[placeholder=请输入章的名称]",x)
             selenium(driver).click_new("body > div.el-dialog__wrapper   button.el-button.zzlPrimary  span")
 
         t = [3,4,5,6]
@@ -98,13 +96,14 @@ class Test_course(object):
         #添加讨论
         for xx in [2,3,4,5]:
             selenium(driver).click_new("div.contentWrapperFour  div:nth-child({0})  div.subItemBox  span.name".format(xx))
-            selenium(driver).FEBXP_C(button_name="添加讨论")
-            selenium(driver).FEBCS_CCSK("div:nth-child(1)  textarea","名胜古迹")
-            selenium(driver).upload_photo(" div:nth-child(2) > div > div > i")
+            selenium(driver).button_click("添加讨论")
+            selenium(driver).text_input("div:nth-child(1)  textarea","名胜古迹")
+            selenium(driver).upload_photo("div:nth-child(2) > div > div > i")
             driver.find_elements_by_css_selector("div button.confirmButton span")[4].click()
-        selenium(driver).FEBXP_C(button_name="提交")
+        selenium(driver).button_click("提交")
         print("\n 第一个用例结束:添加课程")
 
+    @pytest.mark.skip
     @allure.story('课程查询')
     def test_Course_center_inquire(self,driver):
         """
@@ -112,8 +111,8 @@ class Test_course(object):
         @param driver:
         @return:
         """
-        selenium(driver).location_name("配课中心")
-        selenium(driver).location_name("课程管理")
+        selenium(driver).module_skip("配课中心")
+        selenium(driver).module_skip("课程管理")
         selenium(driver).pull_down_choose("input[placeholder=请选择所属学校]", "菜鸟大专")
         selenium(driver).FEBCS_CCSKK("input[placeholder=请输入名称回车查询]","练成")
         selenium(driver).FEBCS_CCSK("input[placeholder=开始日期]","2020-08-04")
