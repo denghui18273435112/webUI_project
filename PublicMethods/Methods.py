@@ -13,7 +13,7 @@ from PublicMethods.WinUpLoadFile import upload_files
 import os
 from utils.logUtil import my_log
 #@pytest.mark.usefixtures("driver")(object)
-class selenium:
+class selenium():
     def __init__(self,driver):
         """
         写一个构造函数，有一个参数driver
@@ -273,6 +273,7 @@ class selenium:
         @param name: 模块名称
         @return:
         """
+
         time.sleep(1)
         if name =="考试管理":
                 selenium(self.driver).click_new("span:nth-child(4)  span:nth-child(2)")

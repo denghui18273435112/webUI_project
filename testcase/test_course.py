@@ -16,6 +16,7 @@ login_YAML = ConfigYaml().read_yaml("login.yaml")
 #@pytest.mark.usefixtures("driver")  #不用声明引入conftest.py中的driver方法
 @allure.feature('课程管理')
 class Test_course(object):
+
     @pytest.mark.run(order=1)
     @allure.story('课程添加')
     def test_Course_center_add(self,driver):

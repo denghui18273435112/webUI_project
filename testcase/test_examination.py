@@ -30,8 +30,6 @@ examination_YAML = ConfigYaml().read_yaml("examination.yaml")
 @allure.feature('考试管理-题库管理')
 class Test_examination(object):
 
-
-
     @pytest.mark.run(order=1)
     @allure.story('添加题库')
     def test_add(self,driver):
