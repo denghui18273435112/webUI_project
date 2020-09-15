@@ -69,7 +69,7 @@ def my_log(log_Logger_name = __file__):
         logger_name         logger名称
         log_Logger_name     日志文件打印部分  get_conf_log
     """
-    return Logger(log_file=generate_file(),log_Logger_name=log_Logger_name,log_level=  ConfigYaml().get_conf_log()).logger_name
+    return Logger(log_file="\n"+generate_file(),log_Logger_name=log_Logger_name,log_level=  ConfigYaml().get_conf_log()).logger_name
 
 if __name__ == '__main__':
     my_log().debug("POST请求")

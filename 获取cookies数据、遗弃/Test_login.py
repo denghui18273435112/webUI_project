@@ -24,3 +24,7 @@ button = win32gui.FindWindowEx(dialog,0,'Button',None)
 win32gui.SendMessage(edit,win32con.WM_SETTEXT,None,'D:\\abc.jpg')
 #点击打开上传文件
 win32gui.SendMessage(dialog,win32con.WM_COMMAND,1,button)
+
+
+for i in range(1,11):
+    print(i)

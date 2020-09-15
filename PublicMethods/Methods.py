@@ -11,16 +11,16 @@ from datetime import datetime
 from config.Conf import get_file_path
 from PublicMethods.WinUpLoadFile import upload_files
 import os
-
-#@pytest.mark.usefixtures("driver")
-class selenium(object):
+from utils.logUtil import my_log
+#@pytest.mark.usefixtures("driver")(object)
+class selenium:
     def __init__(self,driver):
         """
         写一个构造函数，有一个参数driver
         :param driver:
         """
         self.driver=driver
-        print(self.driver)
+        #print(self.driver)
 
     def back(self):
         """
@@ -161,21 +161,25 @@ class selenium(object):
         time.sleep(0.5)
 
 
-    def text_input(self,location,content):
-        # """
-        # 文本输入
-        # :param location: 定位
-        # :param content: 文本输入内容  //*[contains(text(),'{}')]
-        # :return:
-        # """
+    def text_input(self,location,content,Enter=None):
+        """
+        文本输入
+       @param location: 文本定位
+       @param content: 输入内容
+       @param Enter: 是否回车；传入为0回车；Enter=None不回车
+       @return:
+       """
         if '\u4e00' <= location <= '\u9fff':
             self.driver.find_element_by_css_selector("input[placeholder=\"{0}\"]".format(location)).click()
-
         if ">" in location:
             self.driver.find_element_by_css_selector(location).click()
         self.driver.find_element_by_css_selector(location).clear()
         self.driver.find_element_by_css_selector(location).send_keys(content)
+        if Enter == 0:
+            self.driver.find_element_by_css_selector(location).send_keys(Keys.ENTER)
         self.driver.implicitly_wait(10)
+
+
 
 
     def click_new(self, location):
@@ -191,7 +195,7 @@ class selenium(object):
         else:
             self.driver.find_element_by_css_selector(location).click()
         self.driver.implicitly_wait(10)
-        time.sleep(0.5)
+        time.sleep(1)
 
 
 
@@ -202,6 +206,7 @@ class selenium(object):
         @param weizhi:
         @return:
         """
+        time.sleep(1)
         if ">" in location and weizhi != None :
             self.driver.find_elements_by_css_selector(location)[int(weizhi)].click()
         elif ">" in location and weizhi == None :
@@ -211,12 +216,13 @@ class selenium(object):
             self.driver.find_element_by_xpath(location)[int(weizhi)].click()
         elif "/" in location  and weizhi == None :
             self.driver.find_element_by_xpath(location).click()
+
         elif '\u4e00' <= location <= '\u9fff' and weizhi != None:
             self.driver.find_elements_by_xpath("//*[contains(text(),'{}')]".format(location))[int(weizhi)].click()
         elif '\u4e00' <= location <= '\u9fff' and weizhi == None:
             self.driver.find_element_by_xpath("//*[contains(text(),'{}')]".format(location)).click()
         self.driver.implicitly_wait(10)
-        time.sleep(0.5)
+        time.sleep(1)
 
 
     def pull_down_choose(self, location, option_name):
@@ -267,48 +273,52 @@ class selenium(object):
         @param name: 模块名称
         @return:
         """
+        time.sleep(1)
         if name =="考试管理":
-            selenium(self.driver).click_new("span:nth-child(4)  span:nth-child(2)")
+                selenium(self.driver).click_new("span:nth-child(4)  span:nth-child(2)")
         if name =="题库管理":
-            selenium(self.driver).click_new("#app > div > div.contentWrapper > span > div > ul > span:nth-child(4) > li > ul > li.el-menu-item.is-active > span")
+                selenium(self.driver).click_new("#app > div > div.contentWrapper > span > div > ul > span:nth-child(4) > li > ul > li:nth-child(1)")
+        if name =="试卷管理":
+                selenium(self.driver).click_new("#app > div > div.contentWrapper > span > div > ul > span:nth-child(4) > li > ul > li:nth-child(2)")
         if name == "配课中心":
-            selenium(self.driver).click_new("span:nth-child(3)  span:nth-child(2)")
+                selenium(self.driver).click_new("span:nth-child(3)  span:nth-child(2)")
         if name == "学校管理":
-            selenium(self.driver).click_new("span:nth-child(9) span:nth-child(1)")
+                selenium(self.driver).click_new("span:nth-child(9) span:nth-child(1)")
         if name == "课程管理":
-            selenium(self.driver).click_new("#app > div > div.contentWrapper > span > div > ul > span:nth-child(3) > li > ul > li:nth-child(2) > span")
+                selenium(self.driver).click_new("#app > div > div.contentWrapper > span > div > ul > span:nth-child(3) > li > ul > li:nth-child(2) > span")
         if name == "配课中心2":
-            selenium(self.driver).click_new("#app > div > div.contentWrapper > span > div > ul > span:nth-child(3) > li > div > span:nth-child(2)")
+                selenium(self.driver).click_new("#app > div > div.contentWrapper > span > div > ul > span:nth-child(3) > li > div > span:nth-child(2)")
         if name == "配课中心3":
-            selenium(self.driver).click_new("#app > div > div.contentWrapper > span > div > ul > span:nth-child(3) > li > div > span:nth-child(2)")
-        time.sleep(2)
+                selenium(self.driver).click_new("#app > div > div.contentWrapper > span > div > ul > span:nth-child(3) > li > div > span:nth-child(2)")
+        time.sleep(1)
 
 
 
-    def if_list_contrast(self,inquire_field,contrast):
+
+    def if_list_contrast(self,location,contrast):
         """
         获取列表某字段的文本信息  与查询字段进行判断，是否存在包含关系
         inquire_field  需要查询的字段名称
         contrast  输入的查询条件
         @return:
         """
-        if  inquire_field=="学校管理-学校名称":
-            location="#app > div > div.contentWrapper > div > div > div.zzlCover.zzlCoverMH > div.zzlTableList.zzlTableListMaxH > div.el-table.el-table--fit.el-table--scrollable-x.el-table--enable-row-transition > div.el-table__body-wrapper.is-scrolling-left > table > tbody > tr > td.el-table_1_column_1.is-center > div.cell.el-tooltip"
-        list = self.driver.find_elements_by_css_selector(location)
 
-        print(list)
-        if len(list) == 0:
-            print("列表没有数据")
-        else:
-            for i in list:
-                if str(contrast in i.text) == "True":
-                    print("列表数据和查询条件匹配")
-                    print(i.text)
-                    print(contrast)
-                else:
-                    print("列表数据和查询条件匹配")
-                    pytest.xfail("列表数据和查询条件不匹配")
-        time.sleep(0.5)
+        print(self.driver.find_element_by_css_selector(location).text)
+        print(contrast)
+        # print(self.driver.find_elements_by_css_selector(location))
+        # for i in range(1,10):
+        #     print(i)
+        #     list = self.driver.find_elements_by_css_selector(location)[int(i)].text
+        #     print(list)
+        #     print(i.text)
+        #     if str(contrast in i.text) == "True":
+        #             print("列表数据和查询条件匹配")
+        #             print(i.text)
+        #             print(contrast)
+        #     else:
+        #             print("列表数据和查询条件匹配")
+        #             pytest.xfail("列表数据和查询条件不匹配")
+        # time.sleep(0.5)
 
     def new_allure(self,module_name=None,test_name=None):
            #allure
