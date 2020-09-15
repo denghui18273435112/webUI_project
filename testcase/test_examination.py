@@ -36,9 +36,13 @@ class Test_examination(object):
         selenium(driver).module_skip("考试管理")
         selenium(driver).module_skip("题库管理")
         selenium(driver).button_click("新增题库 ")
-        selenium(driver).text_input(" form > div > div:nth-child(1)  input","课程考试{}".format(datetime.strftime(datetime.now(), "%Y%m%d%H%M%S")))
+        time = datetime.strftime(datetime.now(), "%Y%m%d%H%M%S")
+        selenium(driver).text_input(" form > div > div:nth-child(1)  input","课程考试{}".format(time))
         selenium(driver).pull_down_choose("请选择题库类型","课程考试")
         selenium(driver).button_click("确 定")
+        selenium(driver).operating_steps(case_Steps_describe="考试管理-题库管理;添加题库<Br/>添加的题库名称:{}".format(time),
+                                             name_screenshot="查询成功后的截图",
+                                             describe="添加题库")
 
     @pytest.mark.run(order=2)
     @allure.story('修改题库')
