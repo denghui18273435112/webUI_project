@@ -8,6 +8,6 @@ if __name__ == "__main__":
      #pytest.main (['./testcase/test_course.py']) #运行项目下testcase文件下，所有满足执行条件的测试用例
 
     #jenkins运行上使用
-    pytest.main(["-s","./testcase","--alluredir",Base.report_path()])  # 运行testcase目录下所有test开头的方法
+    pytest.main(["-s","--lf","./testcase","--alluredir",Base.report_path()])  # 运行testcase目录下所有test开头的方法
     Base.allure_report(Base.report_path(),Base.report_html_path())
 

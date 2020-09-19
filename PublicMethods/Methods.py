@@ -13,7 +13,7 @@ from PublicMethods.WinUpLoadFile import upload_files
 import os
 from utils.logUtil import my_log
 #@pytest.mark.usefixtures("driver")(object)
-class selenium():
+class selenium(object):
     def __init__(self,driver):
         """
         写一个构造函数，有一个参数driver
@@ -207,9 +207,9 @@ class selenium():
         @return:
         """
         time.sleep(1)
-        if ">" in location and weizhi != None :
+        if (">" in location or "." in location) and weizhi != None :
             self.driver.find_elements_by_css_selector(location)[int(weizhi)].click()
-        elif ">" in location and weizhi == None :
+        elif (">" in location or "." in location) and weizhi == None :
             self.driver.find_element_by_css_selector(location).click()
 
         elif "/" in location  and weizhi != None :
@@ -218,6 +218,8 @@ class selenium():
             self.driver.find_element_by_xpath(location).click()
 
         elif '\u4e00' <= location <= '\u9fff' and weizhi != None:
+            print("//*[contains(text(),'{}')]".format(location))
+            print([int(weizhi)])
             self.driver.find_elements_by_xpath("//*[contains(text(),'{}')]".format(location))[int(weizhi)].click()
         elif '\u4e00' <= location <= '\u9fff' and weizhi == None:
             self.driver.find_element_by_xpath("//*[contains(text(),'{}')]".format(location)).click()
