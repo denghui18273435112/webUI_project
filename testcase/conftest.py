@@ -35,12 +35,12 @@ def driver():
     # opt.add_argument('--headless')                  # 浏览器不提供可视化界面。Linux下如果系统不支持可视化不加这条会启动失败
     # driver = Chrome(options=opt)                    # 创建无界面对象
 
-    option = ChromeOptions()
-    option.headless =True
-    option.add_argument('window-size=1920x1080')
-    driver = webdriver.Chrome(options=option,executable_path = 'G:\python\selenium\webdriver\chromedriver.exe')
+    # option = ChromeOptions()
+    # option.headless =True
+    # option.add_argument('window-size=1920x1080')
+    # driver = webdriver.Chrome(options=option,executable_path = 'G:\python\selenium\webdriver\chromedriver.exe')
 
-    #driver = webdriver.Chrome()
+    driver = webdriver.Chrome()
     driver.maximize_window()
 
     login_YAML = ConfigYaml().read_yaml("login.yaml")
