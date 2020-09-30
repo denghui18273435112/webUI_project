@@ -21,6 +21,8 @@ import os
 import pytest
 import time
 
+
+# 安全后台
 @pytest.fixture(scope="session")  #所有的测试文件执行前后执行一次
 def driver():
    #前置-成功登录
@@ -72,4 +74,43 @@ def driver():
     #print("\n所有的测试文件执行前执行...结束")
     allure.attach("所有测试用例执行完","关闭浏览器")
 
+
+# #武术后台
+# @pytest.fixture(scope="session")  #所有的测试文件执行前后执行一次
+# def driver():
+#    #前置-成功登录
+#
+#     # option = ChromeOptions()
+#     # option.headless =True
+#     # option.add_argument('window-size=1920x1080')
+#     # driver = webdriver.Chrome(options=option,executable_path = 'G:\python\selenium\webdriver\chromedriver.exe')
+#
+#     driver = webdriver.Chrome()
+#     driver.maximize_window()
+#
+#     driver.get("http://192.168.1.202:8080/#/login")
+#     driver.implicitly_wait(10)
+#     while True:
+#             login = driver.find_element_by_css_selector("#email")
+#             login.clear()
+#             login.click()
+#             login.send_keys("test")
+#             password = driver.find_element_by_css_selector("#password")
+#             password.clear()
+#             password.click()
+#             password.send_keys("admin123")
+#             verifycode = driver.find_element_by_css_selector("#verifycode")
+#             verifycode.clear()
+#             verifycode.click()
+#             time.sleep(5)
+#             selenium(driver).click_new("div > div.login-submit > button > span")
+#             if driver.current_url == "http://192.168.1.202:8080/#/workGradeMange":
+#                     break
+#     yield driver
+#
+#    #后置-所有用例执行完关闭浏览器
+#     driver.close()
+#     #print("\n所有的测试文件执行前执行...结束")
+#     allure.attach("所有测试用例执行完","关闭浏览器")
+#
 
