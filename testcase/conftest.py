@@ -67,7 +67,7 @@ def driver():
 
     #print("\n所有的测试文件执行前执行...开始")
     #allure.attach("打开浏览器登录","打开浏览器登录")
-    yield driver
+    #yield driver
 
    #后置-所有用例执行完关闭浏览器
     driver.close()
